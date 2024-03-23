@@ -36,7 +36,7 @@ public class DrinkVendingMachine {
 
     //Don't worry this is just populating our drink list
     private void populateDrinkList() {
-        this.drinkList.addAll(Arrays.asList(vendormachine.vendors.DefaultSnacks.snackList));
+        this.drinkList.addAll(Arrays.asList(DefaultSnacks.snackList));
     }
 
     // This is how we'll select our "snack" from the array
@@ -45,7 +45,6 @@ public class DrinkVendingMachine {
             Snack selection = drinkList.get(arrayPosition);
 
             if (this.availableCredit < selection.cost()) {
-                //TODO replace with Log4j
                 System.out.println("WARNING: you do not have enough credit!");
                 System.out.println("WARNING: machine credit - £" + this.availableCredit);
                 return null;
@@ -55,25 +54,14 @@ public class DrinkVendingMachine {
                 return selection;
             }
         } else {
-            //TODO replace with Log4j
             System.out.println("WARNING: Item does not exist.");
             return null;
         }
     }
 
     public void giveCredit(Person user, float credit) {
-        //TODO replace with Log4j
         System.out.println("INFO: You have entered �" + credit);
         this.availableCredit += user.getCredit(credit);
     }
-
-    //===============================
-    //===  'get'ors
-    //===============================
-
-
-    //===============================
-    //===  'set'ors
-    //===============================
 
 }
