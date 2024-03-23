@@ -1,0 +1,12 @@
+Question:
+Find examples of companies/products:
+ - Which can be considered «good enough»
+ - Arriving first on the market and remaining the sector leaders, even if not the
+    best choice (e.g., from technical point of view)
+ - Changing their business model on the run to satisfy market needs
+
+ Answer:
+ ClubHouse can be an answer for this question as it published when it was good enough to be on the market,
+ but it wasn't a complete application. The application was accessible only by referral code for a long period
+ of time, but after a while, they changed their business model to make it available for everyone even
+ without referral code.
