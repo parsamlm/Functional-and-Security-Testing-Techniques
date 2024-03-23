@@ -1,4 +1,4 @@
-package vendormachine.vendors.item;
+package vendors.item;
 
 public interface Item {
 	
