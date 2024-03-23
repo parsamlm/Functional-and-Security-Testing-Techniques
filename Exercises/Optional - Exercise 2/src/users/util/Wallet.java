@@ -27,11 +27,9 @@ public class Wallet {
         if (retrieve > this.storedCredit) {
             System.out.println("Warning: request exceeds value in wallet!");
             System.out.println("Request: " + retrieve + ",\tstored value: " + retrieve);
-
             return 0;
         } else {
             this.storedCredit -= retrieve;
-
             return retrieve;
         }
     }
