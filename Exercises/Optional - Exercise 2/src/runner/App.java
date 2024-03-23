@@ -1,8 +1,8 @@
-package vendormachine.runner;
+package runner;
 
-import vendormachine.users.Person;
-import vendormachine.users.util.Wallet;
-import vendormachine.vendors.DrinkVendingMachine;
+import users.Person;
+import users.util.Wallet;
+import vendors.DrinkVendingMachine;
 import vendormachine.vendors.item.Snack;
 
 public class App {
@@ -16,7 +16,7 @@ public class App {
 		DrinkVendingMachine drinkMachine = new DrinkVendingMachine();
 		Snack itemSelection;
 
-		// Alyx wants to interact with our vending machine (£2.10 credit)
+		// Alyx wants to interact with our vending machine (ï¿½2.10 credit)
 		drinkMachine.giveCredit(alyx, 2.10f);
 		
 		// They select the 2nd drink option
@@ -25,7 +25,7 @@ public class App {
 		// Let's see what we have
 		System.out.println("");
 		System.out.println(alyx.getName() + " your drink is:\n'" + itemSelection.name +"'");
-		System.out.println("\t- Cost: £" + itemSelection.cost());
+		System.out.println("\t- Cost: ï¿½" + itemSelection.cost());
 	}
 
 }
