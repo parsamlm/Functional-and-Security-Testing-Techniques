@@ -17,10 +17,6 @@ public class Person {
         this.myWallet = wallet;
     }
 
-    //==================
-    //===	Methods
-    //==================
-
     public float getCredit(float retrieve) {
         // if our wallet exists.
         if (myWallet != null) {
@@ -35,7 +31,6 @@ public class Person {
             }
 
         } else {
-            //TODO replace with Log4j
             System.out.println("WARNING: " + this.name + " does not own a wallet!");
             return 0;
         }
@@ -45,13 +40,9 @@ public class Person {
         if (myWallet != null) {
             this.myWallet.addCredit(credit);
         } else {
-            //TODO replace with Log4j
             System.out.println("WARNING: " + this.name + " does not own a wallet!");
         }
     }
-
-    //===============================
-    //===  'get'ors
 
     public String getName() {
         return this.name;
@@ -65,9 +56,6 @@ public class Person {
             return null;
         }
     }
-
-    //===============================
-    //===  'set'ors
 
     public void setName(String name) {
         this.name = name;
