@@ -7,4 +7,4 @@ Then you can test manually PetClinic using the Gherkin test cases you have produ
  You can deliver the .txt (or .doc) file containing the Gherkin test cases.
 
  <h4>Answer</h4>
- <a href="https://github.com/parsamlm/Functional-and-Security-Testing-Techniques/blob/master/Exercises/Exercise%203/Gherkin-TC.txt">Gherking Test Case</a>
+ <a href="https://github.com/parsamlm/Functional-and-Security-Testing-Techniques/blob/master/Exercises/Functional%20Part/Exercise%203/Gherkin-TC.txt">Gherking Test Case</a>
