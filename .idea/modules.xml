@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Exercises/Optional - Exercise 1/Calc/Calc.iml" filepath="$PROJECT_DIR$/Exercises/Optional - Exercise 1/Calc/Calc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Functional-and-Security-Testing-Techniques.iml" filepath="$PROJECT_DIR$/.idea/Functional-and-Security-Testing-Techniques.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Exercises/Optional - Exercise 1/Triangle/Triangle.iml" filepath="$PROJECT_DIR$/Exercises/Optional - Exercise 1/Triangle/Triangle.iml" />
+    </modules>
+  </component>
+</project>
