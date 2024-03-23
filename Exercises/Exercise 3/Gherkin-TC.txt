@@ -1,0 +1,82 @@
+Question:
+I would ask you this week to download and install PetClinic on your laptop and then write the Gherkin test cases
+ (using any editor) for this app. If you can try to apply the systematic approach.
+Then you can test manually PetClinic using the Gherkin test cases you have produced.
+ You can deliver the .txt (or .doc) file containing the Gherkin test cases.
+
+Feature: Add Owner
+    As a veterinarian I want to Add an Owner
+Scenario: Add a New Owner
+    Given I am on the Home page of PetClinic
+    When I click "Find Owners"
+    And I click on "Add Owner" button
+    And I enter "<first name>" for Owner's first name
+    And I enter "<last name>" for Owner's last name
+    And I enter "<address>" for Owner's address
+    And I enter "<city>" for Owner's city
+    And I enter "<telephone>" for Owner's telephone number
+    And I click on "Add Owner" Button
+    Then I should see "New Owner Created" text
+    And I should see the added Owner's Information including name, address, city, and telephone number
+
+Feature: Add New Pet
+    As a veterinarian I want to add a new Pet to an existing Owner's profile
+    Scenario: Add a Pet to a Found Owner
+        Given I have found an Owner with "<Last name>""
+        When I click on the "Add New Pet" button for the chosen Owner
+        Then I should see a form to add a Pet's details
+        When I enter "<pet name>" for Pet's details
+        And I enter "<birth date>" Pet's birth date
+        And I select "<pet type>" for Pet's type
+        And I click on "Add Pet" button
+        Then I should see "New Pet has been Added" text
+        And I should see the added Pet's information including name, birth date, and type
+
+Feature: Edit Owner
+    As a veterinarian I want to edit an Owner's data
+    Scenario: Edit an existing Owner's data
+        Given I have found an Owner with last name"<last name>""
+        When I click on "Edit Owner" button
+        Then I should see a completed form with Owner's data
+        When I change "<first name>" for Owner's first name (assuming a change)
+        And I change "<last name>" for Owner's last name (assuming a change)
+        And I change "<address>" for Owner's address (assuming a change)
+        And I change "<city>" for Owner's city (assuming a change)
+        And I change "<telephone>" for Owner's telephone number (assuming a change)
+        And I click on "Update Owner" button
+        Then I should see "Owner Values Updated" text
+        And I should see the Owner's information including name, address, city, and telephone
+
+Feature: Edit Pet
+    As a veterinarian I want to edit a Pet's data
+    Scenario: Edit an existing Pet's data
+        Given I have found an Owner with last name "<last name>"
+        And I have identified a specific Pet (by name or other criteria) for this Owner
+        When I click on "Edit Pet" clickable text for the chosen Pet
+        Then I should see a completed form with the Pet's data
+        When I change "<name>" for Pet's name (assuming a change)
+        And I change "<birth date>" for Pet's birth date (assuming a change)
+        And I keep "<type>" for Pet's type (assuming no change)
+        And I click on the "Update Pet" button
+        Then I should see "Pet details has been edited" text
+        And I should see the updated Pet's data including name, birth date, and type
+
+Feature: Add Visit
+    As a veterinarian I want to add Visit for a Pet
+    Scenario: Add a Visit for a Pet
+        Given I have found an Owner with last name "<last name>"
+        And I have identified a specific Pet (by name or other criteria) for this Owner
+        When I click on "Add Visit" clickable text for the chosen Pet
+        Then I should see a form for a new Visit
+        When I change the "<Date>" for Visit's date (assuming a change)
+        And I enter the "<Description>" for Visit's description
+        And I click on the "Add Visit" button
+        Then I should see "Your vist has been boked" text
+        And I should see the added Visit's data including "Visit Date" and "Description"
+
+Feature: See List of Veterinarians
+    As a veterinarian I want to see the list of Veterinarians
+    Scenario: See the Veterinarians' list
+        Given I am on the Home page of PetClinic
+        When I click on "Veterinarians" button
+        Then I should see a list of veterinarians including their "Name" and "Specialties"
