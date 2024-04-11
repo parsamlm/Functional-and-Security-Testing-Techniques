@@ -1,0 +1,3 @@
+Building a Selenium IDE testsuite for Petclinic app.
+You can start from the Gherkin test cases you built in the previous assignment.
+You have to deliver the .side file.
