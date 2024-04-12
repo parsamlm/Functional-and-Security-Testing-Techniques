@@ -7,7 +7,10 @@ import utils.Helper;
 
 public class Edge {
     public static void main(String[] args) {
-        WebDriverManager.edgedriver().setup();
+        // for automatic driver management:
+        // WebDriverManager.edgedriver().setup();
+        // for manual driver management:
+        System.setProperty("webdriver.edge.driver", "/Users/parsa/IdeaProjects/Functional-and-Security-Testing-Techniques/Exercises/Functional Part/Exercise 5/src/main/java/Edge/msedgedriver");
         WebDriver driver = new EdgeDriver();
         new Helper(driver).testTitle();
     }
