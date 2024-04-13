@@ -11,7 +11,10 @@ import java.io.File;
 
 public class Firefox {
     public static void main(String[] args) {
-        WebDriverManager.firefoxdriver().setup();
+        // for automatic driver management:
+        // WebDriverManager.firefoxdriver().setup();
+        // for manual driver management:
+        System.setProperty("webdriver.gecko.driver", "/Users/parsa/IdeaProjects/Functional-and-Security-Testing-Techniques/Exercises/Functional Part/Exercise 5/src/main/java/Firefox/geckodriver");
         FirefoxBinary firefoxBinary = new FirefoxBinary(new File("/Applications/Firefox.app/Contents/MacOS/firefox"));
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setBinary(firefoxBinary);
