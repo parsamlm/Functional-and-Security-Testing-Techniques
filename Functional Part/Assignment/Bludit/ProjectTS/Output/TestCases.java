@@ -5,11 +5,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
-
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.core.IsNot.not;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -24,17 +22,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.Keys;
-
 import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import TestCases.PO.*;
 
 public class TestCases {
 
     @BeforeClass()
     public static void setup() {
+        System.setProperty("webdriver.gecko.driver", "InsertGeckoPathHere");
     }
 
     private WebDriver driver;
@@ -57,22 +54,18 @@ public class TestCases {
 
     @Test
     public void addContent() {
-        driver.get("http://localhost:8080/admin");
-        driver.manage().window().setSize(new Dimension(629, 822));
-        LoginPO _LoginPO = new LoginPO(driver, js, vars);
-        _LoginPO.doLogin("admin", "password");
+        loginPO _loginPO = new loginPO(driver, js, vars);
+        _loginPO.doLogin("admin", "password");
         DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doNewContent("Test Content");
-        assertThat(_DashboardPO.set_LINKTEXT_TestContent_1(), is("Test Content"));
+        _DashboardPO.doAddContent("Test Content");
+        assert (_DashboardPO.set_LINKTEXT_TestContent().size() > 0);
         _DashboardPO.doLogout();
     }
 
     @Test
     public void changeUrl() {
-        driver.get("http://localhost:8080/admin");
-        driver.manage().window().setSize(new Dimension(1174, 824));
-        LoginPO _LoginPO = new LoginPO(driver, js, vars);
-        _LoginPO.doLogin("admin", "password");
+        loginPO _loginPO = new loginPO(driver, js, vars);
+        _loginPO.doLogin("admin", "password");
         DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
         _DashboardPO.doChangeUrl("new-post-url");
         assert (_DashboardPO.set_LINKTEXT_new_post_url().size() > 0);
@@ -80,63 +73,52 @@ public class TestCases {
     }
 
     @Test
+    public void changePosition() {
+        loginPO _loginPO = new loginPO(driver, js, vars);
+        _loginPO.doLogin("admin", "password");
+        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
+        _DashboardPO.doChangePosition("30");
+        assertThat(_DashboardPO.set_ID_jsposition_1(), is("30"));
+        _DashboardPO.doLogout_1();
+    }
+
+    @Test
     public void changeParent() {
-        driver.get("http://localhost:8080/admin");
-        driver.manage().window().setSize(new Dimension(1174, 822));
-        LoginPO _LoginPO = new LoginPO(driver, js, vars);
-        _LoginPO.doLogin("admin", "password");
+        loginPO _loginPO = new loginPO(driver, js, vars);
+        _loginPO.doLogin("admin", "password");
         DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
         _DashboardPO.doChangeParent("Create your own content");
-        assertThat(_DashboardPO.set_XPATH_locator(), is("Create your own content"));
-        _DashboardPO.doLogout();
+        assertThat(_DashboardPO.set_ID_jsparent(), is("create-your-own-content"));
+        _DashboardPO.doLogout_1();
     }
 
     @Test
     public void addAsDraft() {
-        driver.get("http://localhost:8080/admin");
-        driver.manage().window().setSize(new Dimension(1174, 822));
-        LoginPO _LoginPO = new LoginPO(driver, js, vars);
-        _LoginPO.doLogin("admin", "password");
+        loginPO _loginPO = new loginPO(driver, js, vars);
+        _loginPO.doLogin("admin", "password");
         DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doAddNewDraft("Draft Content");
+        _DashboardPO.doAddAsDraft("Draft Content");
         assert (_DashboardPO.set_LINKTEXT_DraftContent().size() > 0);
         _DashboardPO.doLogout();
     }
 
     @Test
-    public void changePosition() {
-        driver.get("http://localhost:8080/admin");
-        driver.manage().window().setSize(new Dimension(1174, 822));
-        LoginPO _LoginPO = new LoginPO(driver, js, vars);
-        _LoginPO.doLogin("admin", "password");
+    public void setStickyPost() {
+        loginPO _loginPO = new loginPO(driver, js, vars);
+        _loginPO.doLogin("admin", "password");
         DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doChangePositionOfContent("30");
-        assertThat(_DashboardPO.set_ID_jsposition_1(), is("30"));
+        _DashboardPO.doSetStickyPost("Sticky");
+        assert (_DashboardPO.set_LINKTEXT_Setupyournewsite().size() > 0);
         _DashboardPO.doLogout();
     }
 
     @Test
-    public void deletePost() {
-        driver.get("http://localhost:8080/admin");
-        driver.manage().window().setSize(new Dimension(1174, 822));
-        LoginPO _LoginPO = new LoginPO(driver, js, vars);
-        _LoginPO.doLogin("admin", "password");
+    public void deleteContent() {
+        loginPO _loginPO = new loginPO(driver, js, vars);
+        _loginPO.doLogin("admin", "password");
         DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
         _DashboardPO.doDeleteContent();
-        assertFalse(_DashboardPO.isFollowBluditLinkAvailable());
-        _DashboardPO.doLogout();
-    }
-
-    @Test
-    public void setStickyPost() {
-        driver.get("http://localhost:8080/admin");
-        driver.manage().window().setSize(new Dimension(1174, 822));
-        driver.findElement(By.cssSelector(".uk-vertical-align")).click();
-        LoginPO _LoginPO = new LoginPO(driver, js, vars);
-        _LoginPO.doLogin("admin", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doSetAContentAsSticky("Sticky");
-        assert (_DashboardPO.set_LINKTEXT_Setupyournewsite().size() > 0);
+        assert (_DashboardPO.set_LINKTEXT_FollowBludit().size() == 0);
         _DashboardPO.doLogout();
     }
 }
