@@ -17,8 +17,6 @@ public class ManageUsersPO extends ManageComponentPO {
         driver.findElement(By.name("access_level")).click();
         driver.findElement(By.name("access_level")).findElement(By.xpath("//option[. = '" + userAccessLevel.toString().toLowerCase() + "']")).click();
         driver.findElement(By.cssSelector("input[value='Create User']")).click();
-        MyUtils.WaitForElementLoaded(driver, By.linkText("Manage Users"));
-        driver.findElement(By.linkText("Manage Users")).click();
     }
 
     public String getNewUserName() {
@@ -38,4 +36,7 @@ public class ManageUsersPO extends ManageComponentPO {
     }
 
 
+    public String getErrorMessage() {
+        return driver.findElement(By.cssSelector("table.width50 tbody:nth-child(1) tr:nth-child(2) td:nth-child(1) > p.center")).getText();
+    }
 }
