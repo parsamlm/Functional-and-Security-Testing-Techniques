@@ -22,7 +22,7 @@ import org.openqa.selenium.Keys;
 import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-public class ContentManagementTest {
+public class BluditTestSuiteTest {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
@@ -216,6 +216,84 @@ public class ContentManagementTest {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
+    driver.findElement(By.linkText("Log out")).click();
+  }
+  @Test
+  public void addUser() {
+    System.out.println("{ASSESSOR}:loginPO:doLogin");
+    driver.get("http://localhost:8080/admin");
+    driver.manage().window().setSize(new Dimension(1174, 825));
+    driver.findElement(By.name("username")).sendKeys("admin");
+    driver.findElement(By.name("password")).sendKeys("password");
+    driver.findElement(By.cssSelector(".uk-button")).click();
+    System.out.println("{ASSESSOR}:DashboardPO:doAddUser");
+    driver.findElement(By.linkText("Users")).click();
+    driver.findElement(By.linkText("Add a new user")).click();
+    driver.findElement(By.id("jsnew_username")).sendKeys("usertest");
+    driver.findElement(By.id("jsnew_password")).sendKeys("usertest123");
+    driver.findElement(By.id("jsconfirm_password")).sendKeys("usertest123");
+    {
+      WebElement dropdown = driver.findElement(By.id("jsrole"));
+      dropdown.findElement(By.xpath("//option[. = 'Administrator']")).click();
+    }
+    driver.findElement(By.id("jsemail")).sendKeys("user@test.com");
+    driver.findElement(By.cssSelector(".uk-button-primary")).click();
+    assertThat(driver.findElement(By.linkText("usertest")).getText(), is("usertest"));
+    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
+    driver.findElement(By.linkText("Log out")).click();
+  }
+  @Test
+  public void changePassword() {
+    System.out.println("{ASSESSOR}:loginPO:doLogin");
+    driver.get("http://localhost:8080/admin");
+    driver.manage().window().setSize(new Dimension(1174, 825));
+    driver.findElement(By.name("username")).sendKeys("admin");
+    driver.findElement(By.name("password")).sendKeys("password");
+    driver.findElement(By.cssSelector(".uk-button")).click();
+    System.out.println("{ASSESSOR}:DashboardPO:doChangePassword");
+    driver.findElement(By.linkText("Users")).click();
+    driver.findElement(By.linkText("usertest")).click();
+    driver.findElement(By.linkText("Change password")).click();
+    driver.findElement(By.id("jsnew_password")).sendKeys("newpassword");
+    driver.findElement(By.id("jsconfirm_password")).sendKeys("newpassword");
+    driver.findElement(By.cssSelector(".uk-button-primary")).click();
+    {
+      List<WebElement> elements = driver.findElements(By.id("alert"));
+      assert(elements.size() > 0);
+    }
+    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
+    try {
+      Thread.sleep(5000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    driver.findElement(By.linkText("Log out")).click();
+  }
+  @Test
+  public void addSocials() {
+    System.out.println("{ASSESSOR}:loginPO:doLogin");
+    driver.get("http://localhost:8080/admin");
+    driver.manage().window().setSize(new Dimension(1174, 825));
+    driver.findElement(By.name("username")).sendKeys("admin");
+    driver.findElement(By.name("password")).sendKeys("password");
+    driver.findElement(By.cssSelector(".uk-button")).click();
+    System.out.println("{ASSESSOR}:DashboardPO:doAddSocials");
+    driver.findElement(By.linkText("Users")).click();
+    driver.findElement(By.linkText("admin")).click();
+    driver.findElement(By.id("jsfacebook")).sendKeys("https://www.facebook.com/some_fake_user_name_52432562135863");
+    driver.findElement(By.id("jsinstagram")).sendKeys("https://instagram.com/some_fake_user_name_52432562135863");
+    driver.findElement(By.cssSelector(".uk-button-primary")).click();
+    driver.findElement(By.linkText("Users")).click();
+    driver.findElement(By.linkText("admin")).click();
+    {
+      String value = driver.findElement(By.id("jsfacebook")).getAttribute("value");
+      assertThat(value, is("https://www.facebook.com/some_fake_user_name_52432562135863"));
+    }
+    {
+      String value = driver.findElement(By.id("jsinstagram")).getAttribute("value");
+      assertThat(value, is("https://instagram.com/some_fake_user_name_52432562135863"));
+    }
+    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
     driver.findElement(By.linkText("Log out")).click();
   }
 }

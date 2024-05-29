@@ -264,4 +264,150 @@ public class DashboardPO {
         List<WebElement> elements = driver.findElements(elem);
         return elements;
     }
+
+    public void click_LINKTEXT_Users() {
+        By elem = By.linkText("Users");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        driver.findElement(elem).click();
+    }
+
+    public void click_LINKTEXT_Addanewuser() {
+        By elem = By.linkText("Add a new user");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        driver.findElement(elem).click();
+    }
+
+    public void set_ID_jsnew_username(String key1) {
+        By elem = By.id("jsnew_username");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        driver.findElement(elem).clear();
+        driver.findElement(elem).sendKeys(key1);
+    }
+
+    public void set_ID_jsnew_password(String key2) {
+        By elem = By.id("jsnew_password");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        driver.findElement(elem).clear();
+        driver.findElement(elem).sendKeys(key2);
+    }
+
+    public void set_ID_jsconfirm_password(String key3, String key4) {
+        By elem = By.id("jsconfirm_password");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        driver.findElement(elem).clear();
+        driver.findElement(elem).sendKeys(key3);
+        {
+            elem = By.id("jsrole");
+            MyUtils.WaitForElementLoaded(driver, elem);
+            WebElement dropdown = driver.findElement(elem);
+            elem = By.xpath("//option[. = '" + key4 + "']");
+            MyUtils.WaitForElementLoaded(driver, elem);
+            dropdown.findElement(elem).click();
+        }
+    }
+
+    public void set_ID_jsemail(String key5) {
+        By elem = By.id("jsemail");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        driver.findElement(elem).clear();
+        driver.findElement(elem).sendKeys(key5);
+    }
+
+    public void click_CSSSELECTOR_uk_button_primary() {
+        By elem = By.cssSelector(".uk-button-primary");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        driver.findElement(elem).click();
+    }
+
+    public void set_LINKTEXT_usertest() {
+        By elem = By.linkText("usertest");
+        MyUtils.WaitForElementLoaded(driver, elem);
+    }
+
+    public void doAddUser(String key1, String key2, String key3, String key4, String key5) {
+        click_LINKTEXT_Users();
+        click_LINKTEXT_Addanewuser();
+        set_ID_jsnew_username(key1);
+        set_ID_jsnew_password(key2);
+        set_ID_jsconfirm_password(key3, key4);
+        set_ID_jsemail(key5);
+        click_CSSSELECTOR_uk_button_primary();
+        set_LINKTEXT_usertest();
+    }
+
+    public String set_LINKTEXT_usertest_1() {
+        By elem = By.linkText("usertest");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        return driver.findElement(elem).getText();
+    }
+
+    public void click_LINKTEXT_usertest() {
+        By elem = By.linkText("usertest");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        driver.findElement(elem).click();
+    }
+
+    public void click_LINKTEXT_Changepassword() {
+        By elem = By.linkText("Change password");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        driver.findElement(elem).click();
+    }
+
+    public void set_ID_jsconfirm_password_1(String key2) {
+        By elem = By.id("jsconfirm_password");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        driver.findElement(elem).clear();
+        driver.findElement(elem).sendKeys(key2);
+    }
+
+    public void doChangePassword(String key1, String key2) {
+        click_LINKTEXT_Users();
+        click_LINKTEXT_usertest();
+        click_LINKTEXT_Changepassword();
+        set_ID_jsnew_password(key1);
+        set_ID_jsconfirm_password_1(key2);
+        click_CSSSELECTOR_uk_button_primary();
+    }
+
+    public List<WebElement> set_ID_alert() {
+        By elem = By.id("alert");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        List<WebElement> elements = driver.findElements(elem);
+        return elements;
+    }
+
+    public void click_LINKTEXT_admin() {
+        By elem = By.linkText("admin");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        driver.findElement(elem).click();
+    }
+
+    public void set_ID_jsfacebook(String key1) {
+        By elem = By.id("jsfacebook");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        driver.findElement(elem).clear();
+        driver.findElement(elem).sendKeys(key1);
+    }
+
+    public void set_ID_jsinstagram(String key2) {
+        By elem = By.id("jsinstagram");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        driver.findElement(elem).clear();
+        driver.findElement(elem).sendKeys(key2);
+    }
+
+    public void doAddSocials(String key1, String key2) {
+        click_LINKTEXT_Users();
+        click_LINKTEXT_admin();
+        set_ID_jsfacebook(key1);
+        set_ID_jsinstagram(key2);
+        click_CSSSELECTOR_uk_button_primary();
+    }
+
+    public String set_ID_jsfacebook_1() {
+        By elem = By.id("jsfacebook");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        String value = driver.findElement(elem).getAttribute("value");
+        return value;
+    }
 }

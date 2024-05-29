@@ -121,4 +121,38 @@ public class TestCases {
         assert (_DashboardPO.set_LINKTEXT_FollowBludit().size() == 0);
         _DashboardPO.doLogout();
     }
+
+    @Test
+    public void addUser() {
+        loginPO _loginPO = new loginPO(driver, js, vars);
+        _loginPO.doLogin("admin", "password");
+        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
+        _DashboardPO.doAddUser("usertest", "usertest123", "usertest123", "Administrator", "user@test.com");
+        assertThat(_DashboardPO.set_LINKTEXT_usertest_1(), is("usertest"));
+        _DashboardPO.doLogout_1();
+    }
+
+    @Test
+    public void changePassword() {
+        loginPO _loginPO = new loginPO(driver, js, vars);
+        _loginPO.doLogin("admin", "password");
+        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
+        _DashboardPO.doChangePassword("newpassword", "newpassword");
+        assert (_DashboardPO.set_ID_alert().size() > 0);
+        _DashboardPO.doLogout();
+    }
+
+    @Test
+    public void addSocials() {
+        loginPO _loginPO = new loginPO(driver, js, vars);
+        _loginPO.doLogin("admin", "password");
+        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
+        _DashboardPO.doAddSocials("https://www.facebook.com/some_fake_user_name_52432562135863", "https://instagram.com/some_fake_user_name_52432562135863");
+        assertThat(_DashboardPO.set_ID_jsfacebook_1(), is("https://www.facebook.com/some_fake_user_name_52432562135863"));
+        {
+            String value = driver.findElement(By.id("jsinstagram")).getAttribute("value");
+            assertThat(value, is("https://instagram.com/some_fake_user_name_52432562135863"));
+        }
+        _DashboardPO.doLogout_1();
+    }
 }
