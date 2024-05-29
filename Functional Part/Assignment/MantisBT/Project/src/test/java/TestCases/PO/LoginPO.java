@@ -3,8 +3,6 @@ package TestCases.PO;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import java.util.Map;
-
 public class LoginPO {
     WebDriver driver;
 
@@ -19,8 +17,8 @@ public class LoginPO {
         driver.findElement(By.cssSelector("input[type='submit']")).click();
     }
 
-    public String getLoginInfo() {
-        // find the element by class which is login-info-left
-        return driver.findElement(By.className("login-info-left")).getText();
+    public void doLogout() {
+        driver.findElement(By.linkText("Logout")).click();
     }
+
 }
