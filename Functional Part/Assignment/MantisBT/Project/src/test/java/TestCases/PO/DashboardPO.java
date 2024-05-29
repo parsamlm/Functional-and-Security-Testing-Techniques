@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class DashboardPO {
     WebDriver driver;
+
     public DashboardPO(WebDriver driver) {
         this.driver = driver;
     }
@@ -15,5 +16,9 @@ public class DashboardPO {
 
     public void doLogout() {
         driver.findElement(By.linkText("Logout")).click();
+    }
+
+    public String getLoginInfo() {
+        return driver.findElement(By.className("login-info-left")).getText();
     }
 }

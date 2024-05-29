@@ -15,17 +15,7 @@ public class MyUtils {
     }
 
     public static void WaitForElementLoaded(WebDriver driver, By elem) {
-        // wait for the element to be shown
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(elem));
     }
-
-    public String getLoginInfo() {
-        // find the element by class which is login-info-left
-        return driver.findElement(By.className("login-info-left")).getText();
-    }
-
-
-
-
 }
