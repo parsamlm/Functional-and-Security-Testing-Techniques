@@ -136,4 +136,14 @@ public class TestCases {
         _DashboardPO.doLogout();
     }
 
+    @Test
+    public void j_doAssignIssue() {
+        _LoginPO.doLogin("administrator", "root");
+        MenuComponentPO _MenuComponentPO = _DashboardPO.getMenuComponent();
+        ViewIssuesPO _ViewIssuesPO = _MenuComponentPO.goToViewIssues();
+        _ViewIssuesPO.assignAnIssue(IssueAction.Assign);
+        Assert.assertEquals("assigned (administrator)", _ViewIssuesPO.getIssueStatus());
+        _DashboardPO.doLogout();
+    }
+
 }
