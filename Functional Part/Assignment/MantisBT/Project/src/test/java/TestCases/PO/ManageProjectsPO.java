@@ -20,6 +20,16 @@ public class ManageProjectsPO extends MenuComponentPO {
         driver.findElement(By.cssSelector("input[value='Add Project']")).click();
     }
 
+    public void addCategoryToExistingProject(String projectName, String categoryName) {
+        goToProject(projectName);
+        driver.findElement(By.cssSelector("form[action='manage_proj_cat_add.php'] input[name='name']")).sendKeys(categoryName);
+        driver.findElement(By.cssSelector("input[value='Add Category']")).click();
+    }
+
+    private void goToProject(String projectName) {
+        driver.findElement(By.linkText(projectName)).click();
+    }
+
     public String getProjectName() {
         return driver.findElement(By.cssSelector("body:nth-child(2) table.width100:nth-child(6) tbody:nth-child(1) tr.row-1:nth-child(3) > td:nth-child(1)")).getText().toLowerCase();
     }
@@ -38,5 +48,9 @@ public class ManageProjectsPO extends MenuComponentPO {
 
     public String getErrorMessage() {
         return driver.findElement(By.cssSelector("table.width50 tbody:nth-child(1) tr:nth-child(2) td:nth-child(1) > p.center")).getText();
+    }
+
+    public String getCategoryName(){
+        return driver.findElement(By.cssSelector("a:nth-child(1) table.width75:nth-child(1) tbody:nth-child(1) tr.row-1:nth-child(3) > td:nth-child(1)")).getText();
     }
 }
