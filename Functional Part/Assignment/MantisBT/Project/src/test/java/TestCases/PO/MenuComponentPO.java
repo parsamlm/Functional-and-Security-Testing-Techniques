@@ -15,4 +15,14 @@ public class MenuComponentPO {
         return new ManageComponentPO(driver);
     }
 
+    public ReportIssuePO goToReportIssue() {
+        driver.findElement(By.linkText("Report Issue")).click();
+        return new ReportIssuePO(driver);
+    }
+
+    public ViewIssuesPO goToViewIssues() {
+        driver.findElement(By.linkText("View Issues")).click();
+        return new ViewIssuesPO(driver);
+    }
+
 }

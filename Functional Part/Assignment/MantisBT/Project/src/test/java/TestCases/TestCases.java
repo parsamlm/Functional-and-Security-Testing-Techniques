@@ -123,4 +123,17 @@ public class TestCases {
         _DashboardPO.doLogout();
     }
 
+    @Test
+    public void i_doAddIssue() {
+        _LoginPO.doLogin("administrator", "root");
+        MenuComponentPO _MenuComponentPO = _DashboardPO.getMenuComponent();
+        ReportIssuePO _ReportIssuePO = _MenuComponentPO.goToReportIssue();
+        _ReportIssuePO.addNewIssue("Category001", IssueReproducibility.RANDOM, IssueSeverity.CRASH, IssuePriority.IMMEDIATE, "Summary001", "description001");
+        ViewIssuesPO _ViewIssuesPO = _MenuComponentPO.goToViewIssues();
+        Assert.assertEquals("Category001", _ViewIssuesPO.getIssueCategory());
+        Assert.assertEquals("crash", _ViewIssuesPO.getIssueSeverity());
+        Assert.assertEquals("Summary001", _ViewIssuesPO.getIssueSummary());
+        _DashboardPO.doLogout();
+    }
+
 }
