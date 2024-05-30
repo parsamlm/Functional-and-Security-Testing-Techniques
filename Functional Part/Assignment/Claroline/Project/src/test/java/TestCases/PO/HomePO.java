@@ -33,4 +33,7 @@ public class HomePO {
         driver.findElement(By.xpath("//a[text()='Logout']")).click();
     }
 
+    public String getLoginInfo() {
+        return driver.findElement(By.className("userName")).getText();
+    }
 }

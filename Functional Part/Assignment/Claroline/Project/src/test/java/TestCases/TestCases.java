@@ -34,7 +34,7 @@ public class TestCases {
     public void a_doAddUser() {
         _HomePO.login("admin", "admin");
         PlatformAdministrationPO _PlatformAdministrationPO = _HomePO.goToPlatformAdministration();
-        _PlatformAdministrationPO.addUser("Name001", "firstname001", "user001", "password001", "password001");
+        _PlatformAdministrationPO.addUser("Name001", "Firstname001", "user001", "password001", "password001");
         Assert.assertEquals("The new user has been sucessfully created", _PlatformAdministrationPO.getSuccessMessage());
         _HomePO.logout();
     }
@@ -45,8 +45,15 @@ public class TestCases {
         PlatformAdministrationPO _PlatformAdministrationPO = _HomePO.goToPlatformAdministration();
         _PlatformAdministrationPO.searchUser("user001");
         Assert.assertEquals("Name001", _PlatformAdministrationPO.getUserLastname());
-        Assert.assertEquals("firstname001", _PlatformAdministrationPO.getUserFirstname());
+        Assert.assertEquals("Firstname001", _PlatformAdministrationPO.getUserFirstname());
         Assert.assertEquals("User", _PlatformAdministrationPO.getUserStatus());
+        _HomePO.logout();
+    }
+
+    @Test
+    public void c_doLoginUser(){
+        _HomePO.login("user001", "password001");
+        Assert.assertEquals("Firstname001 Name001", _HomePO.getLoginInfo());
         _HomePO.logout();
     }
 
