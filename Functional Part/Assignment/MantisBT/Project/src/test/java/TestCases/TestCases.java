@@ -64,13 +64,29 @@ public class TestCases {
     }
 
     @Test
-    public void d_doAddEmptyUser(){
+    public void d_doAddEmptyUser() {
         _LoginPO.doLogin("administrator", "root");
         MenuComponentPO _MenuComponentPO = _DashboardPO.getMenuComponent();
         ManageComponentPO _ManageComponentPO = _MenuComponentPO.goToManage();
         ManageUsersPO _ManageUsersPO = _ManageComponentPO.goToManageUsers();
         _ManageUsersPO.addNewUser("", "", "", UserAccessLevel.REPORTER);
         Assert.assertEquals("A necessary field \"\" was empty. Please recheck your inputs.", _ManageUsersPO.getErrorMessage());
+        _DashboardPO.doLogout();
+    }
+
+    @Test
+    public void e_doAddProject() {
+        _LoginPO.doLogin("administrator", "root");
+        MenuComponentPO _MenuComponentPO = _DashboardPO.getMenuComponent();
+        ManageComponentPO _ManageComponentPO = _MenuComponentPO.goToManage();
+        ManageProjectsPO _ManageProjectsPO = _ManageComponentPO.goToManageProjects();
+        _ManageProjectsPO.addNewProject("Project001", ProjectStatus.RELEASE, ProjectViewStatus.PUBLIC, "Description");
+        _MenuComponentPO.goToManage();
+        _ManageComponentPO.goToManageProjects();
+        Assert.assertEquals("Project001".toLowerCase(), _ManageProjectsPO.getProjectName());
+        Assert.assertEquals("release", _ManageProjectsPO.getProjectStatus());
+        Assert.assertEquals("public", _ManageProjectsPO.getProjectViewStatus());
+        Assert.assertEquals("Description", _ManageProjectsPO.getProjectDescription());
         _DashboardPO.doLogout();
     }
 

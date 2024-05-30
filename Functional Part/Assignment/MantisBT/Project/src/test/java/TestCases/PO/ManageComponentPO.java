@@ -14,4 +14,9 @@ public class ManageComponentPO extends MenuComponentPO {
         return new ManageUsersPO(driver);
     }
 
+    public ManageProjectsPO goToManageProjects() {
+        driver.findElement(By.linkText("Manage Projects")).click();
+        return new ManageProjectsPO(driver);
+    }
+
 }
