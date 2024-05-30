@@ -62,4 +62,16 @@ public class TestCases {
         Assert.assertEquals("That username is already being used. Please go back and select another one.", _ManageUsersPO.getErrorMessage());
         _DashboardPO.doLogout();
     }
+
+    @Test
+    public void d_doAddEmptyUser(){
+        _LoginPO.doLogin("administrator", "root");
+        MenuComponentPO _MenuComponentPO = _DashboardPO.getMenuComponent();
+        ManageComponentPO _ManageComponentPO = _MenuComponentPO.goToManage();
+        ManageUsersPO _ManageUsersPO = _ManageComponentPO.goToManageUsers();
+        _ManageUsersPO.addNewUser("", "", "", UserAccessLevel.REPORTER);
+        Assert.assertEquals("A necessary field \"\" was empty. Please recheck your inputs.", _ManageUsersPO.getErrorMessage());
+        _DashboardPO.doLogout();
+    }
+
 }
