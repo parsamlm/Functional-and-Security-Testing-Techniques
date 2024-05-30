@@ -35,4 +35,8 @@ public class ManageProjectsPO extends MenuComponentPO {
     public String getProjectDescription() {
         return driver.findElement(By.cssSelector("body:nth-child(2) table.width100:nth-child(6) tbody:nth-child(1) tr.row-1:nth-child(3) > td:nth-child(5)")).getText();
     }
+
+    public String getErrorMessage() {
+        return driver.findElement(By.cssSelector("table.width50 tbody:nth-child(1) tr:nth-child(2) td:nth-child(1) > p.center")).getText();
+    }
 }
