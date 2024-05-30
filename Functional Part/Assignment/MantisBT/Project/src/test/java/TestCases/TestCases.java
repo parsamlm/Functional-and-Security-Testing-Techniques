@@ -112,4 +112,15 @@ public class TestCases {
         _DashboardPO.doLogout();
     }
 
+    @Test
+    public void h_doAddExistingCategory() {
+        _LoginPO.doLogin("administrator", "root");
+        MenuComponentPO _MenuComponentPO = _DashboardPO.getMenuComponent();
+        ManageComponentPO _ManageComponentPO = _MenuComponentPO.goToManage();
+        ManageProjectsPO _ManageProjectsPO = _ManageComponentPO.goToManageProjects();
+        _ManageProjectsPO.addCategoryToExistingProject("Project001", "Category001");
+        Assert.assertEquals("A category with that name already exists.", _ManageProjectsPO.getErrorMessage());
+        _DashboardPO.doLogout();
+    }
+
 }
