@@ -39,4 +39,15 @@ public class TestCases {
         _HomePO.logout();
     }
 
+    @Test
+    public void b_doSearchUser() {
+        _HomePO.login("admin", "admin");
+        PlatformAdministrationPO _PlatformAdministrationPO = _HomePO.goToPlatformAdministration();
+        _PlatformAdministrationPO.searchUser("user001");
+        Assert.assertEquals("Name001", _PlatformAdministrationPO.getUserLastname());
+        Assert.assertEquals("firstname001", _PlatformAdministrationPO.getUserFirstname());
+        Assert.assertEquals("User", _PlatformAdministrationPO.getUserStatus());
+        _HomePO.logout();
+    }
+
 }

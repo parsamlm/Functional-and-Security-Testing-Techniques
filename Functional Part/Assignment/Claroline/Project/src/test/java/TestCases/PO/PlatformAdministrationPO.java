@@ -23,4 +23,21 @@ public class PlatformAdministrationPO extends HomePO {
     public String getSuccessMessage() {
         return driver.findElement(By.className("msgSuccess")).getText();
     }
+
+    public void searchUser(String username) {
+        driver.findElement(By.id("search_user")).sendKeys(username);
+        driver.findElement(By.cssSelector("input[value='Go']")).click();
+    }
+
+    public String getUserLastname() {
+        return driver.findElement(By.id("L0")).getText();
+    }
+
+    public String getUserFirstname() {
+        return driver.findElement(By.xpath("//td[@headers='c2 L0']")).getText();
+    }
+
+    public String getUserStatus() {
+        return driver.findElement(By.xpath("//td[@headers='c5 L0']")).getText();
+    }
 }
