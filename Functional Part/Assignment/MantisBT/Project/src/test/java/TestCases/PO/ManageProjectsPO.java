@@ -1,5 +1,7 @@
 package TestCases.PO;
 
+import TestCases.Utils.ProjectStatus;
+import TestCases.Utils.ProjectViewStatus;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 

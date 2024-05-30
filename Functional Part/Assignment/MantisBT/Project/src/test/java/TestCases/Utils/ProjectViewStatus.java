@@ -1,4 +1,4 @@
-package TestCases.PO;
+package TestCases.Utils;
 
 public enum ProjectViewStatus {
     PUBLIC,

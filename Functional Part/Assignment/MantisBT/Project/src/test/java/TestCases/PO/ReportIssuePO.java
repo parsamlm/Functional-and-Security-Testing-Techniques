@@ -1,5 +1,8 @@
 package TestCases.PO;
 
+import TestCases.Utils.IssuePriority;
+import TestCases.Utils.IssueReproducibility;
+import TestCases.Utils.IssueSeverity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 

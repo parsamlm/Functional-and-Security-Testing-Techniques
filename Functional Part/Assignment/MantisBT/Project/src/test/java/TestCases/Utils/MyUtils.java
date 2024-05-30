@@ -1,4 +1,4 @@
-package TestCases.PO;
+package TestCases.Utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
