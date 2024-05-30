@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: test.InstallerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 39.607 s - in test.InstallerTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 20.208 s - in test.InstallerTest

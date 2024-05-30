@@ -1,0 +1,3 @@
+May 29, 2024, 2:23:05 PM - Warning: Method name duplicate in PO: DashboardPO the method set_CSSSELECTOR_ollinth_child1 is renamed in  set_CSSSELECTOR_ollinth_child1_1
+May 29, 2024, 2:23:05 PM - Warning: For PO:DashboardPO method set_CSSSELECTOR_ollinth_child1 and set_CSSSELECTOR_ollinth_child1_1 unified under the name set_CSSSELECTOR_ollinth_child1_1 since bodies and paramters list are identical
+May 29, 2024, 2:23:05 PM - Warning: For PO:DashboardPO method doLogout and click_CSSSELECTOR_employee_name unified under the name click_CSSSELECTOR_employee_name since bodies and paramters list are identical
