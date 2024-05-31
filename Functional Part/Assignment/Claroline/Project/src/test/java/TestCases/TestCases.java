@@ -51,9 +51,19 @@ public class TestCases {
     }
 
     @Test
-    public void c_doLoginUser(){
+    public void c_doLoginUser() {
         _HomePO.login("user001", "password001");
         Assert.assertEquals("Firstname001 Name001", _HomePO.getLoginInfo());
+        _HomePO.logout();
+    }
+
+    @Test
+    public void d_doAddCourse() {
+        _HomePO.login("admin", "admin");
+        PlatformAdministrationPO _PlatformAdministrationPO = _HomePO.goToPlatformAdministration();
+        _PlatformAdministrationPO.addCourse("Course001", "001");
+        Assert.assertEquals("You have just created the course website : 001", _PlatformAdministrationPO.getSuccessMessage());
+        _PlatformAdministrationPO.clickOnTheContinueButton();
         _HomePO.logout();
     }
 

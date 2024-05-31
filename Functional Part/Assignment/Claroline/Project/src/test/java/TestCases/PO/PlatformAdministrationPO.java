@@ -2,6 +2,7 @@ package TestCases.PO;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class PlatformAdministrationPO extends HomePO {
 
@@ -18,6 +19,23 @@ public class PlatformAdministrationPO extends HomePO {
         driver.findElement(By.id("password_conf")).sendKeys(passwordConfirmation);
         driver.findElement(By.id("student")).click();
         driver.findElement(By.id("applyChange")).click();
+    }
+
+    public void addCourse(String courseTitle, String courseCode){
+        driver.findElement(By.xpath("//a[text()='Create course']")).click();
+        driver.findElement(By.id("course_title")).sendKeys(courseTitle);
+        driver.findElement(By.id("course_officialCode")).sendKeys(courseCode);
+        Select dropdown = new Select(driver.findElement(By.id("mslist2")));
+        dropdown.selectByVisibleText("Sciences");
+        driver.findElement(By.cssSelector("img[src='/claroline11110/web/img/go_left.png?1232376376']")).click();
+        dropdown.selectByVisibleText("Economics");
+        driver.findElement(By.id("access_public")).click();
+        driver.findElement(By.id("registration_true")).click();
+        driver.findElement(By.name("changeProperties")).click();
+    }
+
+    public void clickOnTheContinueButton(){
+        driver.findElement(By.xpath("//a[text()='Continue']")).click();
     }
 
     public String getSuccessMessage() {
