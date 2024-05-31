@@ -1,6 +1,6 @@
 package TestCases.Utils;
 
-public enum QuestionAnswerType {
+public enum AnswerType {
     MULTIPLE_CHOICE_UNIQUE_ANSWER,
     MULTIPLE_CHOICE_MULTIPLE_ANSWER,
     TRUE_FALSE,

@@ -9,7 +9,13 @@ public class MyDesktopPO extends HomePO {
         super(driver);
     }
 
-    public void enrollUser(String courseTitle) {
+    public CoursePO goToCourse(String courseTitle) {
+        CoursePO coursePO = new CoursePO(driver);
+        driver.findElement(By.xpath("//a[text()='" + courseTitle + "']")).click();
+        return coursePO;
+    }
+
+    public void enrollUserToCourse(String courseTitle) {
         driver.findElement(By.cssSelector("div.portlet.mycourselist div.content:nth-child(2) div.userCommands ul:nth-child(2) li:nth-child(1) > a.userCommandsItem")).click();
         driver.findElement(By.id("coursesearchbox_keyword")).sendKeys(courseTitle);
         driver.findElement(By.xpath("//button[text()='Search']")).click();

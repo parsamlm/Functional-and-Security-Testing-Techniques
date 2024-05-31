@@ -1,6 +1,6 @@
 package TestCases.PO;
 
-import TestCases.Utils.QuestionAnswerType;
+import TestCases.Utils.AnswerType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -37,9 +37,9 @@ public class CoursePO extends HomePO {
         driver.findElement(By.cssSelector("table tbody tr:nth-child(2) td:nth-child(4) a img")).click();
     }
 
-    public String getCourseExerciseVisibility() {
+    public String getCourseExerciseVisibility(int rowNumber) {
         goToCourseExercise();
-        String visibility = driver.findElement(By.cssSelector("table tbody tr:nth-child(2) td:nth-child(4) a img")).getAttribute("alt");
+        String visibility = driver.findElement(By.cssSelector("table tbody tr:nth-child(" + rowNumber + ") td:nth-child(4) a img")).getAttribute("alt");
         if (visibility.contentEquals("Make visible")) {
             return "Make visible";
         } else {
@@ -47,7 +47,7 @@ public class CoursePO extends HomePO {
         }
     }
 
-    public void addQuestion(String title, QuestionAnswerType type, boolean isNewQuestion) {
+    public void addQuestion(String title, AnswerType type, boolean isNewQuestion) {
         if (isNewQuestion)
             driver.findElement(By.cssSelector("table tbody tr:nth-child(2) td:nth-child(2) a img")).click();
         driver.findElement(By.xpath("//a[text()='New question']")).click();

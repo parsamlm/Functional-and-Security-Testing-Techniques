@@ -17,10 +17,8 @@ public class HomePO {
         driver.findElement(By.xpath("//button[text()='Enter']")).click();
     }
 
-    public CoursePO goToCourse(String courseTitle) {
-        CoursePO coursePO = new CoursePO(driver);
-        driver.findElement(By.xpath("//a[text()='" + courseTitle + "']")).click();
-        return coursePO;
+    public void logout() {
+        driver.findElement(By.xpath("//a[text()='Logout']")).click();
     }
 
     public MyDesktopPO goToMyDesktop() {
@@ -35,11 +33,7 @@ public class HomePO {
         return platformAdministrationPO;
     }
 
-    public void logout() {
-        driver.findElement(By.xpath("//a[text()='Logout']")).click();
-    }
-
-    public String getLoginInfo() {
+    public String getUserLoggedInInfo() {
         return driver.findElement(By.className("userName")).getText();
     }
 }
