@@ -5,12 +5,11 @@ import TestCases.PO.HomePO;
 import TestCases.PO.MyDesktopPO;
 import TestCases.PO.PlatformAdministrationPO;
 import TestCases.Utils.MyUtils;
+import TestCases.Utils.QuestionAnswerType;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
-import java.util.logging.Logger;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestCases {
@@ -114,6 +113,28 @@ public class TestCases {
         Assert.assertEquals("Make visible", _CoursePO.getCourseExerciseVisibility());
         _CoursePO.changeCourseExerciseVisibility();
         Assert.assertEquals("Make invisible", _CoursePO.getCourseExerciseVisibility());
+        _HomePO.logout();
+    }
+
+    @Test
+    public void j_doAddCourseExerciseQuestions() {
+        _HomePO.login("admin", "admin");
+        CoursePO _CoursePO = _HomePO.goToCourse("001 - Course001");
+        _CoursePO.goToCourseExercise();
+        _CoursePO.addQuestion("Question 1", QuestionAnswerType.MULTIPLE_CHOICE_UNIQUE_ANSWER, true);
+        _CoursePO.handleAnswerTypeMCUA(2, 1, "3", "-3");
+        _CoursePO.addQuestion("Question 2", QuestionAnswerType.TRUE_FALSE, false);
+        _CoursePO.handleAnswerTypeTF(1, "3", "-3");
+        _CoursePO.addQuestion("Question 3", QuestionAnswerType.MULTIPLE_CHOICE_MULTIPLE_ANSWER, false);
+        _CoursePO.handleAnswerTypeMCMA(3, 1, 3, "3", "-3");
+        _CoursePO.goToExercisePage();
+        Assert.assertEquals("Question 1", _CoursePO.getQuestionTitle(1));
+        Assert.assertEquals("Multiple choice (Unique answer)", _CoursePO.getAnswerType(1));
+        Assert.assertEquals("Question 2", _CoursePO.getQuestionTitle(2));
+        Assert.assertEquals("True/False", _CoursePO.getAnswerType(2));
+        Assert.assertEquals("Question 3", _CoursePO.getQuestionTitle(3));
+        Assert.assertEquals("Multiple choice (Multiple answers)", _CoursePO.getAnswerType(3));
+        _HomePO.logout();
     }
 
 }
