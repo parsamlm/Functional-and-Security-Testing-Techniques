@@ -1,6 +1,7 @@
 package TestCases;
 
 import TestCases.PO.HomePO;
+import TestCases.PO.MyDesktopPO;
 import TestCases.PO.PlatformAdministrationPO;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
@@ -74,6 +75,15 @@ public class TestCases {
         _PlatformAdministrationPO.searchCourse("Course001");
         Assert.assertEquals("Course001", _PlatformAdministrationPO.getCourseTitle());
         Assert.assertEquals("001", _PlatformAdministrationPO.getCourseCode());
+        _HomePO.logout();
+    }
+
+    @Test
+    public void f_doEnrollUser(){
+        _HomePO.login("user001", "password001");
+        MyDesktopPO _MyDesktopPO = _HomePO.goToMyDesktop();
+        _MyDesktopPO.enrollUser("Course001");
+        Assert.assertEquals("You've been enrolled on the course", _MyDesktopPO.getSuccessMessage());
         _HomePO.logout();
     }
 
