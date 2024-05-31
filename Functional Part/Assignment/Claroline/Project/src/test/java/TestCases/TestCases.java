@@ -95,6 +95,16 @@ public class TestCases {
         CoursePO _CoursePO = _HomePO.goToCourse("001 - Course001");
         _CoursePO.addCourseEvent("Exam 001", "31", "May", "2023", "Genoa");
         Assert.assertEquals("Event added to the agenda.", MyUtils.getSuccessMessage(driver));
+        _HomePO.logout();
+    }
+
+    @Test
+    public void h_doAddCourseExercise() {
+        _HomePO.login("admin", "admin");
+        CoursePO _CoursePO = _HomePO.goToCourse("001 - Course001");
+        _CoursePO.addCourseExercise("Exercise 001");
+        Assert.assertEquals("Exercise added", MyUtils.getSuccessMessage(driver));
+        _HomePO.logout();
     }
 
 }
