@@ -26,4 +26,23 @@ public class CoursePO extends HomePO {
         driver.findElement(By.id("title")).sendKeys(exerciseTitle);
         driver.findElement(By.xpath("//input[@value='Ok']")).click();
     }
+
+    private void goToCourseExercise() {
+        driver.findElement(By.cssSelector("img[src='/claroline11110/claroline/exercise/icon.png']")).click();
+    }
+
+    public void changeCourseExerciseVisibility() {
+        goToCourseExercise();
+        driver.findElement(By.cssSelector("table tbody tr:nth-child(2) td:nth-child(4) a img")).click();
+    }
+
+    public String getCourseExerciseVisibility() {
+        goToCourseExercise();
+        String visibility = driver.findElement(By.cssSelector("table tbody tr:nth-child(2) td:nth-child(4) a img")).getAttribute("alt");
+        if (visibility.contentEquals("Make visible")) {
+            return "Make visible";
+        } else {
+            return "Make invisible";
+        }
+    }
 }

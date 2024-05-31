@@ -107,4 +107,13 @@ public class TestCases {
         _HomePO.logout();
     }
 
+    @Test
+    public void i_doMakeCourseExerciseVisible() {
+        _HomePO.login("admin", "admin");
+        CoursePO _CoursePO = _HomePO.goToCourse("001 - Course001");
+        Assert.assertEquals("Make visible", _CoursePO.getCourseExerciseVisibility());
+        _CoursePO.changeCourseExerciseVisibility();
+        Assert.assertEquals("Make invisible", _CoursePO.getCourseExerciseVisibility());
+    }
+
 }
