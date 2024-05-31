@@ -47,6 +47,19 @@ public class PlatformAdministrationPO extends HomePO {
         driver.findElement(By.cssSelector("input[value='Go']")).click();
     }
 
+    public void searchCourse(String courseTitle){
+        driver.findElement(By.id("search_course")).sendKeys(courseTitle);
+        driver.findElement(By.cssSelector("ul.adminPanel li:nth-child(2) ul.adminCourse:nth-child(2) li:nth-child(1) form:nth-child(2) > input:nth-child(2)")).click();
+    }
+
+    public String getCourseTitle(){
+        return driver.findElement(By.xpath("//td[@headers='c1 L0']")).getText();
+    }
+
+    public String getCourseCode(){
+        return driver.findElement(By.id("L0")).getText();
+    }
+
     public String getUserLastname() {
         return driver.findElement(By.id("L0")).getText();
     }

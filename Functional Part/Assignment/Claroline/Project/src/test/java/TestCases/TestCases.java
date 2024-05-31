@@ -67,4 +67,14 @@ public class TestCases {
         _HomePO.logout();
     }
 
+    @Test
+    public void e_doSearchCourse(){
+        _HomePO.login("admin", "admin");
+        PlatformAdministrationPO _PlatformAdministrationPO = _HomePO.goToPlatformAdministration();
+        _PlatformAdministrationPO.searchCourse("Course001");
+        Assert.assertEquals("Course001", _PlatformAdministrationPO.getCourseTitle());
+        Assert.assertEquals("001", _PlatformAdministrationPO.getCourseCode());
+        _HomePO.logout();
+    }
+
 }
