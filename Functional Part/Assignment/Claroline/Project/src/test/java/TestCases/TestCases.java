@@ -1,8 +1,10 @@
 package TestCases;
 
+import TestCases.PO.CoursePO;
 import TestCases.PO.HomePO;
 import TestCases.PO.MyDesktopPO;
 import TestCases.PO.PlatformAdministrationPO;
+import TestCases.Utils.MyUtils;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.WebDriver;
@@ -36,7 +38,7 @@ public class TestCases {
         _HomePO.login("admin", "admin");
         PlatformAdministrationPO _PlatformAdministrationPO = _HomePO.goToPlatformAdministration();
         _PlatformAdministrationPO.addUser("Name001", "Firstname001", "user001", "password001", "password001");
-        Assert.assertEquals("The new user has been sucessfully created", _PlatformAdministrationPO.getSuccessMessage());
+        Assert.assertEquals("The new user has been sucessfully created", MyUtils.getSuccessMessage(driver));
         _HomePO.logout();
     }
 
@@ -63,13 +65,13 @@ public class TestCases {
         _HomePO.login("admin", "admin");
         PlatformAdministrationPO _PlatformAdministrationPO = _HomePO.goToPlatformAdministration();
         _PlatformAdministrationPO.addCourse("Course001", "001");
-        Assert.assertEquals("You have just created the course website : 001", _PlatformAdministrationPO.getSuccessMessage());
+        Assert.assertEquals("You have just created the course website : 001", MyUtils.getSuccessMessage(driver));
         _PlatformAdministrationPO.clickOnTheContinueButton();
         _HomePO.logout();
     }
 
     @Test
-    public void e_doSearchCourse(){
+    public void e_doSearchCourse() {
         _HomePO.login("admin", "admin");
         PlatformAdministrationPO _PlatformAdministrationPO = _HomePO.goToPlatformAdministration();
         _PlatformAdministrationPO.searchCourse("Course001");
@@ -79,12 +81,20 @@ public class TestCases {
     }
 
     @Test
-    public void f_doEnrollUser(){
+    public void f_doEnrollUser() {
         _HomePO.login("user001", "password001");
         MyDesktopPO _MyDesktopPO = _HomePO.goToMyDesktop();
         _MyDesktopPO.enrollUser("Course001");
-        Assert.assertEquals("You've been enrolled on the course", _MyDesktopPO.getSuccessMessage());
+        Assert.assertEquals("You've been enrolled on the course", MyUtils.getSuccessMessage(driver));
         _HomePO.logout();
+    }
+
+    @Test
+    public void g_doAddCourseEvent() {
+        _HomePO.login("admin", "admin");
+        CoursePO _CoursePO = _HomePO.goToCourse("001 - Course001");
+        _CoursePO.addCourseEvent("Exam 001", "31", "May", "2023", "Genoa");
+        Assert.assertEquals("Event added to the agenda.", MyUtils.getSuccessMessage(driver));
     }
 
 }

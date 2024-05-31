@@ -21,7 +21,7 @@ public class PlatformAdministrationPO extends HomePO {
         driver.findElement(By.id("applyChange")).click();
     }
 
-    public void addCourse(String courseTitle, String courseCode){
+    public void addCourse(String courseTitle, String courseCode) {
         driver.findElement(By.xpath("//a[text()='Create course']")).click();
         driver.findElement(By.id("course_title")).sendKeys(courseTitle);
         driver.findElement(By.id("course_officialCode")).sendKeys(courseCode);
@@ -34,12 +34,8 @@ public class PlatformAdministrationPO extends HomePO {
         driver.findElement(By.name("changeProperties")).click();
     }
 
-    public void clickOnTheContinueButton(){
+    public void clickOnTheContinueButton() {
         driver.findElement(By.xpath("//a[text()='Continue']")).click();
-    }
-
-    public String getSuccessMessage() {
-        return driver.findElement(By.className("msgSuccess")).getText();
     }
 
     public void searchUser(String username) {
@@ -47,16 +43,16 @@ public class PlatformAdministrationPO extends HomePO {
         driver.findElement(By.cssSelector("input[value='Go']")).click();
     }
 
-    public void searchCourse(String courseTitle){
+    public void searchCourse(String courseTitle) {
         driver.findElement(By.id("search_course")).sendKeys(courseTitle);
         driver.findElement(By.cssSelector("ul.adminPanel li:nth-child(2) ul.adminCourse:nth-child(2) li:nth-child(1) form:nth-child(2) > input:nth-child(2)")).click();
     }
 
-    public String getCourseTitle(){
+    public String getCourseTitle() {
         return driver.findElement(By.xpath("//td[@headers='c1 L0']")).getText();
     }
 
-    public String getCourseCode(){
+    public String getCourseCode() {
         return driver.findElement(By.id("L0")).getText();
     }
 

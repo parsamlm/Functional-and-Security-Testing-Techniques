@@ -17,6 +17,12 @@ public class HomePO {
         driver.findElement(By.xpath("//button[text()='Enter']")).click();
     }
 
+    public CoursePO goToCourse(String courseTitle) {
+        CoursePO coursePO = new CoursePO(driver);
+        driver.findElement(By.xpath("//a[text()='" + courseTitle + "']")).click();
+        return coursePO;
+    }
+
     public MyDesktopPO goToMyDesktop() {
         MyDesktopPO myDesktopPO = new MyDesktopPO(driver);
         driver.findElement(By.xpath("//a[text()='My desktop']")).click();
