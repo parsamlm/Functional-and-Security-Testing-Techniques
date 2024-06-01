@@ -17,8 +17,4 @@ public class LoginPO {
         driver.findElement(By.cssSelector("input[type='submit']")).click();
     }
 
-    public void doLogout() {
-        driver.findElement(By.linkText("Logout")).click();
-    }
-
 }

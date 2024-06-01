@@ -9,7 +9,7 @@ public class ViewIssuesPO extends MenuComponentPO {
         super(driver);
     }
 
-    public void assignAnIssue(IssueAction issueAction){
+    public void assignAnIssue(IssueAction issueAction) {
         driver.findElement(By.name("bug_arr[]")).click();
         driver.findElement(By.name("action")).click();
         driver.findElement(By.name("action")).findElement(By.xpath("//option[. = '" + issueAction.toString() + "']")).click();
@@ -17,20 +17,24 @@ public class ViewIssuesPO extends MenuComponentPO {
         driver.findElement(By.cssSelector("input[value='Assign Issues']")).click();
     }
 
-    public String getIssueCategory() {
-        return driver.findElement(By.cssSelector("form:nth-child(12) table.width100 tbody:nth-child(1) tr:nth-child(4) > td.center:nth-child(6)")).getText();
+    public String getIssueCategoryByRowNumber(int rowNumber) {
+        rowNumber += 3;
+        return driver.findElement(By.xpath("/html[1]/body[1]/form[1]/table[1]/tbody[1]/tr[" + rowNumber + "]/td[6]")).getText();
     }
 
 
-    public String getIssueSeverity() {
-        return driver.findElement(By.cssSelector("form:nth-child(12) table.width100 tbody:nth-child(1) tr:nth-child(4) > td.center:nth-child(7)")).getText();
+    public String getIssueSeverityByRowNumber(int rowNumber) {
+        rowNumber += 3;
+        return driver.findElement(By.xpath("/html[1]/body[1]/form[1]/table[1]/tbody[1]/tr[" + rowNumber + "]/td[7]")).getText();
     }
 
-    public String getIssueStatus(){
-        return driver.findElement(By.cssSelector("form:nth-child(12) table.width100 tbody:nth-child(1) tr:nth-child(4) > td.center:nth-child(8)")).getText();
+    public String getIssueStatusByRowNumber(int rowNumber) {
+        rowNumber += 3;
+        return driver.findElement(By.xpath("/html[1]/body[1]/form[1]/table[1]/tbody[1]/tr[" + rowNumber + "]/td[8]")).getText();
     }
 
-    public String getIssueSummary() {
-        return driver.findElement(By.cssSelector("form:nth-child(12) table.width100 tbody:nth-child(1) tr:nth-child(4) > td.left:nth-child(10)")).getText();
+    public String getIssueSummaryByRowNumber(int rowNumber) {
+        rowNumber += 3;
+        return driver.findElement(By.xpath("/html[1]/body[1]/form[1]/table[1]/tbody[1]/tr[" + rowNumber + "]/td[10]")).getText();
     }
 }

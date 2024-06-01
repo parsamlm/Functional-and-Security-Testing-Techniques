@@ -20,24 +20,24 @@ public class ManageUsersPO extends ManageComponentPO {
         driver.findElement(By.cssSelector("input[value='Create User']")).click();
     }
 
-    public String getNewUserName() {
-        return driver.findElement(By.cssSelector("body:nth-child(2) table.width100:nth-child(8) tbody:nth-child(1) tr.row-1:nth-child(4) > td:nth-child(1)")).getText();
+    public String getUserUsernameByRowNumber(int rowNumber) {
+        rowNumber += 2;
+        return driver.findElement(By.xpath("/html[1]/body[1]/table[3]/tbody[1]/tr[" + rowNumber + "]/td[1]")).getText();
     }
 
-    public String getRealName() {
-        return driver.findElement(By.cssSelector("body:nth-child(2) table.width100:nth-child(8) tbody:nth-child(1) tr.row-1:nth-child(4) > td:nth-child(2)")).getText();
+    public String getUserRealNameByRowNumber(int rowNumber) {
+        rowNumber += 2;
+        return driver.findElement(By.xpath("/html[1]/body[1]/table[3]/tbody[1]/tr[" + rowNumber + "]/td[2]")).getText();
     }
 
-    public String getEmail() {
-        return driver.findElement(By.cssSelector("body:nth-child(2) table.width100:nth-child(8) tbody:nth-child(1) tr.row-1:nth-child(4) > td:nth-child(3)")).getText();
+    public String getUserEmailByRowNumber(int rowNumber) {
+        rowNumber += 2;
+        return driver.findElement(By.xpath("/html[1]/body[1]/table[3]/tbody[1]/tr[" + rowNumber + "]/td[3]")).getText();
     }
 
-    public String getAccessLevel() {
-        return driver.findElement(By.cssSelector("body:nth-child(2) table.width100:nth-child(8) tbody:nth-child(1) tr.row-1:nth-child(4) > td:nth-child(4)")).getText();
+    public String getUserAccessLevelByRowNumber(int rowNumber) {
+        rowNumber += 2;
+        return driver.findElement(By.xpath("/html[1]/body[1]/table[3]/tbody[1]/tr[" + rowNumber + "]/td[4]")).getText();
     }
 
-
-    public String getErrorMessage() {
-        return driver.findElement(By.cssSelector("table.width50 tbody:nth-child(1) tr:nth-child(2) td:nth-child(1) > p.center")).getText();
-    }
 }

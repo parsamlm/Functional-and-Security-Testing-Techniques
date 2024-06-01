@@ -32,27 +32,28 @@ public class ManageProjectsPO extends MenuComponentPO {
         driver.findElement(By.linkText(projectName)).click();
     }
 
-    public String getProjectName() {
-        return driver.findElement(By.cssSelector("body:nth-child(2) table.width100:nth-child(6) tbody:nth-child(1) tr.row-1:nth-child(3) > td:nth-child(1)")).getText().toLowerCase();
+    public String getProjectNameByRowNumber(int rowNumber) {
+        rowNumber += 2;
+        return driver.findElement(By.xpath("/html[1]/body[1]/table[3]/tbody[1]/tr[" + rowNumber + "]/td[1]")).getText();
     }
 
-    public String getProjectStatus() {
-        return driver.findElement(By.cssSelector("body:nth-child(2) table.width100:nth-child(6) tbody:nth-child(1) tr.row-1:nth-child(3) > td:nth-child(2)")).getText();
+    public String getProjectStatusByRowNumber(int rowNumber) {
+        rowNumber += 2;
+        return driver.findElement(By.xpath("/html[1]/body[1]/table[3]/tbody[1]/tr[" + rowNumber + "]/td[2]")).getText();
     }
 
-    public String getProjectViewStatus() {
-        return driver.findElement(By.cssSelector("body:nth-child(2) table.width100:nth-child(6) tbody:nth-child(1) tr.row-1:nth-child(3) > td:nth-child(4)")).getText();
+    public String getProjectViewStatusByRowNumber(int rowNumber) {
+        rowNumber += 2;
+        return driver.findElement(By.xpath("/html[1]/body[1]/table[3]/tbody[1]/tr[" + rowNumber + "]/td[4]")).getText();
     }
 
-    public String getProjectDescription() {
-        return driver.findElement(By.cssSelector("body:nth-child(2) table.width100:nth-child(6) tbody:nth-child(1) tr.row-1:nth-child(3) > td:nth-child(5)")).getText();
+    public String getProjectDescriptionByRowNumber(int rowNumber) {
+        rowNumber += 2;
+        return driver.findElement(By.xpath("/html[1]/body[1]/table[3]/tbody[1]/tr[" + rowNumber + "]/td[5]")).getText();
     }
 
-    public String getErrorMessage() {
-        return driver.findElement(By.cssSelector("table.width50 tbody:nth-child(1) tr:nth-child(2) td:nth-child(1) > p.center")).getText();
-    }
-
-    public String getCategoryName(){
-        return driver.findElement(By.cssSelector("a:nth-child(1) table.width75:nth-child(1) tbody:nth-child(1) tr.row-1:nth-child(3) > td:nth-child(1)")).getText();
+    public String getCategoryNameByRowNumber(int rowNumber) {
+        rowNumber += 2;
+        return driver.findElement(By.xpath("/html[1]/body[1]/div[6]/a[1]/table[1]/tbody[1]/tr[" + rowNumber + "]/td[1]")).getText();
     }
 }
