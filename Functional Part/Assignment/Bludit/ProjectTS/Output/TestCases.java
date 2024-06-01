@@ -53,106 +53,156 @@ public class TestCases {
     }
 
     @Test
-    public void addContent() {
-        loginPO _loginPO = new loginPO(driver, js, vars);
-        _loginPO.doLogin("admin", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doAddContent("Test Content");
-        assert (_DashboardPO.set_LINKTEXT_TestContent().size() > 0);
-        _DashboardPO.doLogout();
+    public void adoAddContent() {
+        driver.get("http://localhost:8080/administrator/");
+        driver.manage().window().setSize(new Dimension(1200, 700));
+        LoginPO _LoginPO = new LoginPO(driver, js, vars);
+        _LoginPO.doLogin("admin", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToNewContent();
+        NewContentPO _NewContentPO = new NewContentPO(driver, js, vars);
+        _NewContentPO.createNewContent("Test content");
+        ContentPO _ContentPO = new ContentPO(driver, js, vars);
+        assert (_ContentPO.getContentTitle().size() > 0);
+        _HomePO.logout();
     }
 
     @Test
-    public void changeUrl() {
-        loginPO _loginPO = new loginPO(driver, js, vars);
-        _loginPO.doLogin("admin", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doChangeUrl("new-post-url");
-        assert (_DashboardPO.set_LINKTEXT_new_post_url().size() > 0);
-        _DashboardPO.doLogout();
+    public void bdoChangeUrl() {
+        driver.get("http://localhost:8080/administrator/");
+        driver.manage().window().setSize(new Dimension(1200, 700));
+        LoginPO _LoginPO = new LoginPO(driver, js, vars);
+        _LoginPO.doLogin("admin", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToContent();
+        ContentPO _ContentPO = new ContentPO(driver, js, vars);
+        _ContentPO.changeUrl("new-post-url");
+        _HomePO.goToContent();
+        assert (_ContentPO.getContentUrl().size() > 0);
+        _HomePO.logout();
     }
 
     @Test
-    public void changePosition() {
-        loginPO _loginPO = new loginPO(driver, js, vars);
-        _loginPO.doLogin("admin", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doChangePosition("30");
-        assertThat(_DashboardPO.set_ID_jsposition_1(), is("30"));
-        _DashboardPO.doLogout_1();
+    public void cdoChangePosition() {
+        driver.get("http://localhost:8080/administrator/");
+        driver.manage().window().setSize(new Dimension(1200, 700));
+        LoginPO _LoginPO = new LoginPO(driver, js, vars);
+        _LoginPO.doLogin("admin", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToContent();
+        ContentPO _ContentPO = new ContentPO(driver, js, vars);
+        _ContentPO.changeContentPosition("30");
+        _HomePO.goToContent();
+        _ContentPO.getContentPosition();
+        assertThat(_ContentPO.set_ID_jsposition_1(), is("30"));
+        _HomePO.logout();
     }
 
     @Test
-    public void changeParent() {
-        loginPO _loginPO = new loginPO(driver, js, vars);
-        _loginPO.doLogin("admin", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doChangeParent("Create your own content");
-        assertThat(_DashboardPO.set_ID_jsparent(), is("create-your-own-content"));
-        _DashboardPO.doLogout_1();
+    public void ddoChangeParent() {
+        driver.get("http://localhost:8080/administrator/");
+        driver.manage().window().setSize(new Dimension(1200, 700));
+        LoginPO _LoginPO = new LoginPO(driver, js, vars);
+        _LoginPO.doLogin("admin", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToContent();
+        ContentPO _ContentPO = new ContentPO(driver, js, vars);
+        _ContentPO.changeContentParent("Create your own content");
+        _HomePO.goToContent();
+        _ContentPO.getContentPosition();
+        assertThat(_ContentPO.set_ID_jsparent(), is("create-your-own-content"));
+        _HomePO.logout_1();
     }
 
     @Test
-    public void addAsDraft() {
-        loginPO _loginPO = new loginPO(driver, js, vars);
-        _loginPO.doLogin("admin", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doAddAsDraft("Draft Content");
-        assert (_DashboardPO.set_LINKTEXT_DraftContent().size() > 0);
-        _DashboardPO.doLogout();
+    public void edoAddContentAsDraft() {
+        driver.get("http://localhost:8080/administrator/");
+        driver.manage().window().setSize(new Dimension(1200, 700));
+        LoginPO _LoginPO = new LoginPO(driver, js, vars);
+        _LoginPO.doLogin("admin", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToNewContent();
+        NewContentPO _NewContentPO = new NewContentPO(driver, js, vars);
+        _NewContentPO.createContentAsDraft("Draft Content");
+        ContentPO _ContentPO = new ContentPO(driver, js, vars);
+        assert (_ContentPO.getDraftContentTitle().size() > 0);
+        _HomePO.logout();
     }
 
     @Test
-    public void setStickyPost() {
-        loginPO _loginPO = new loginPO(driver, js, vars);
-        _loginPO.doLogin("admin", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doSetStickyPost("Sticky");
-        assert (_DashboardPO.set_LINKTEXT_Setupyournewsite().size() > 0);
-        _DashboardPO.doLogout();
+    public void fdoSetContentAsSticky() {
+        driver.get("http://localhost:8080/administrator/");
+        driver.manage().window().setSize(new Dimension(1200, 700));
+        LoginPO _LoginPO = new LoginPO(driver, js, vars);
+        _LoginPO.doLogin("admin", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToContent();
+        ContentPO _ContentPO = new ContentPO(driver, js, vars);
+        _ContentPO.setContentAsStickyPost("Sticky");
+        _HomePO.goToContent();
+        assert (_ContentPO.getStickyContentTitle().size() > 0);
+        _HomePO.logout();
     }
 
     @Test
-    public void deleteContent() {
-        loginPO _loginPO = new loginPO(driver, js, vars);
-        _loginPO.doLogin("admin", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doDeleteContent();
-        assert (_DashboardPO.set_LINKTEXT_FollowBludit().size() == 0);
-        _DashboardPO.doLogout();
+    public void gdoDeleteContent() {
+        driver.get("http://localhost:8080/administrator/");
+        driver.manage().window().setSize(new Dimension(1200, 700));
+        LoginPO _LoginPO = new LoginPO(driver, js, vars);
+        _LoginPO.doLogin("admin", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToContent();
+        ContentPO _ContentPO = new ContentPO(driver, js, vars);
+        _ContentPO.deleteContent();
+        assert (_ContentPO.set_LINKTEXT_FollowBludit().size() == 0);
+        _HomePO.logout();
     }
 
     @Test
-    public void addUser() {
-        loginPO _loginPO = new loginPO(driver, js, vars);
-        _loginPO.doLogin("admin", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doAddUser("usertest", "usertest123", "usertest123", "Administrator", "user@test.com");
-        assertThat(_DashboardPO.set_LINKTEXT_usertest_1(), is("usertest"));
-        _DashboardPO.doLogout_1();
+    public void hdoAddUser() {
+        driver.get("http://localhost:8080/administrator/");
+        driver.manage().window().setSize(new Dimension(1200, 700));
+        LoginPO _LoginPO = new LoginPO(driver, js, vars);
+        _LoginPO.doLogin("admin", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToUsers();
+        UsersPO _UsersPO = new UsersPO(driver, js, vars);
+        _UsersPO.createNewUser("usertest", "usertest123", "usertest123", "Administrator");
+        assert (_UsersPO.set_LINKTEXT_usertest().size() > 0);
+        _HomePO.logout();
     }
 
     @Test
-    public void changePassword() {
-        loginPO _loginPO = new loginPO(driver, js, vars);
-        _loginPO.doLogin("admin", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doChangePassword("newpassword", "newpassword");
-        assert (_DashboardPO.set_ID_alert().size() > 0);
-        _DashboardPO.doLogout();
+    public void idoChangePassword() {
+        driver.get("http://localhost:8080/administrator/");
+        driver.manage().window().setSize(new Dimension(1200, 700));
+        LoginPO _LoginPO = new LoginPO(driver, js, vars);
+        _LoginPO.doLogin("admin", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToUsers();
+        UsersPO _UsersPO = new UsersPO(driver, js, vars);
+        _UsersPO.changeUserPassword("newpassword", "newpassword");
+        assert (_HomePO.getAlert().size() > 0);
+        _HomePO.logout();
     }
 
     @Test
-    public void addSocials() {
-        loginPO _loginPO = new loginPO(driver, js, vars);
-        _loginPO.doLogin("admin", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doAddSocials("https://www.facebook.com/some_fake_user_name_52432562135863", "https://instagram.com/some_fake_user_name_52432562135863");
-        assertThat(_DashboardPO.set_ID_jsfacebook_1(), is("https://www.facebook.com/some_fake_user_name_52432562135863"));
+    public void jdoAddSocials() {
+        driver.get("http://localhost:8080/administrator/");
+        driver.manage().window().setSize(new Dimension(1200, 700));
+        LoginPO _LoginPO = new LoginPO(driver, js, vars);
+        _LoginPO.doLogin("admin", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToUsers();
+        UsersPO _UsersPO = new UsersPO(driver, js, vars);
+        _UsersPO.addSocialMediaToUser("https://www.facebook.com/some_fake_user_name_52432562135863", "https://instagram.com/some_fake_user_name_52432562135863");
+        _HomePO.goToUsers();
+        _UsersPO.getUserSocialMedia();
+        assertThat(_UsersPO.set_ID_jsfacebook_1(), is("https://www.facebook.com/some_fake_user_name_52432562135863"));
         {
             String value = driver.findElement(By.id("jsinstagram")).getAttribute("value");
             assertThat(value, is("https://instagram.com/some_fake_user_name_52432562135863"));
         }
-        _DashboardPO.doLogout_1();
+        _HomePO.logout();
     }
 }

@@ -1,10 +1,8 @@
-May 29, 2024, 9:05:41 AM - Warning: Method name duplicate in PO: DashboardPO the method set_ID_jsposition is renamed in  set_ID_jsposition_1
-May 29, 2024, 9:05:41 AM - Warning: Method name duplicate in PO: DashboardPO the method doLogout is renamed in  doLogout_1
-May 29, 2024, 9:05:41 AM - Warning: Method name duplicate in PO: DashboardPO the method click_CSSSELECTOR_linth_child7sidebar_button is renamed in  click_CSSSELECTOR_linth_child7sidebar_button_1
-May 29, 2024, 9:05:41 AM - Warning: For PO:DashboardPO method doLogout and doLogout_1 unified under the name doLogout_1 since bodies and paramters list are identical
-May 29, 2024, 9:05:41 AM - Warning: Method name duplicate in PO: DashboardPO the method click_CSSSELECTOR_linth_child7sidebar_button is renamed in  click_CSSSELECTOR_linth_child7sidebar_button_2
-May 29, 2024, 9:05:41 AM - Warning: Method name duplicate in PO: DashboardPO the method set_LINKTEXT_usertest is renamed in  set_LINKTEXT_usertest_1
-May 29, 2024, 9:05:41 AM - Warning: For PO:DashboardPO method doLogout and doLogout_1 unified under the name doLogout_1 since bodies and paramters list are identical
-May 29, 2024, 9:05:41 AM - Warning: Method name duplicate in PO: DashboardPO the method set_ID_jsconfirm_password is renamed in  set_ID_jsconfirm_password_1
-May 29, 2024, 9:05:41 AM - Warning: Method name duplicate in PO: DashboardPO the method set_ID_jsfacebook is renamed in  set_ID_jsfacebook_1
-May 29, 2024, 9:05:41 AM - Warning: For PO:DashboardPO method doLogout and doLogout_1 unified under the name doLogout_1 since bodies and paramters list are identical
+Jun 1, 2024, 4:15:40 PM - Warning: Method name duplicate in PO: ContentPO the method set_ID_jsposition is renamed in  set_ID_jsposition_1
+Jun 1, 2024, 4:15:41 PM - Warning: Method name duplicate in PO: ContentPO the method click_CSSSELECTOR_linth_child7sidebar_button is renamed in  click_CSSSELECTOR_linth_child7sidebar_button_1
+Jun 1, 2024, 4:15:41 PM - Warning: For PO:ContentPO method getContentParent and getContentPosition unified under the name getContentPosition since bodies and paramters list are identical
+Jun 1, 2024, 4:15:41 PM - Warning: Method name duplicate in PO: HomePO the method logout is renamed in  logout_1
+Jun 1, 2024, 4:15:41 PM - Warning: Method name duplicate in PO: ContentPO the method click_CSSSELECTOR_linth_child7sidebar_button is renamed in  click_CSSSELECTOR_linth_child7sidebar_button_2
+Jun 1, 2024, 4:15:41 PM - Warning: The method declaration getUserUsername in the pageObject: UsersPO is empty. So it will be discharged
+Jun 1, 2024, 4:15:41 PM - Warning: Method name duplicate in PO: UsersPO the method set_ID_jsconfirm_password is renamed in  set_ID_jsconfirm_password_1
+Jun 1, 2024, 4:15:41 PM - Warning: Method name duplicate in PO: UsersPO the method set_ID_jsfacebook is renamed in  set_ID_jsfacebook_1

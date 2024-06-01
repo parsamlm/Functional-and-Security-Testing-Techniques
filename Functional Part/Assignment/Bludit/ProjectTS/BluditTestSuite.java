@@ -37,172 +37,193 @@ public class BluditTestSuiteTest {
     driver.quit();
   }
   @Test
-  public void addContent() {
-    System.out.println("{ASSESSOR}:loginPO:doLogin");
-    driver.get("http://localhost:8080/admin");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void adoAddContent() {
+    driver.get("http://localhost:8080/administrator/");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:doLogin");
     driver.findElement(By.name("username")).sendKeys("admin");
     driver.findElement(By.name("password")).sendKeys("password");
     driver.findElement(By.cssSelector(".uk-button")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doAddContent");
+    System.out.println("{ASSESSOR}:HomePO:goToNewContent");
     driver.findElement(By.linkText("New content")).click();
-    driver.findElement(By.id("jstitle")).sendKeys("Test Content");
+    System.out.println("{ASSESSOR}:NewContentPO:createNewContent");
+    driver.findElement(By.id("jstitle")).sendKeys("Test content");
     driver.findElement(By.cssSelector(".uk-button:nth-child(1)")).click();
+    System.out.println("{ASSESSOR}:ContentPO:getContentTitle");
     {
-      List<WebElement> elements = driver.findElements(By.linkText("Test Content"));
+      List<WebElement> elements = driver.findElements(By.linkText("Test content"));
       assert(elements.size() > 0);
     }
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+    System.out.println("{ASSESSOR}:HomePO:logout");
+    {
+      WebDriverWait wait = new WebDriverWait(driver, 30);
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Log out")));
     }
     driver.findElement(By.linkText("Log out")).click();
   }
   @Test
-  public void changeUrl() {
-    System.out.println("{ASSESSOR}:loginPO:doLogin");
-    driver.get("http://localhost:8080/admin");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void bdoChangeUrl() {
+    driver.get("http://localhost:8080/administrator/");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:doLogin");
     driver.findElement(By.name("username")).sendKeys("admin");
     driver.findElement(By.name("password")).sendKeys("password");
     driver.findElement(By.cssSelector(".uk-button")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doChangeUrl");
+    System.out.println("{ASSESSOR}:HomePO:goToContent");
     driver.findElement(By.linkText("Content")).click();
-    driver.findElement(By.linkText("Test Content")).click();
+    System.out.println("{ASSESSOR}:ContentPO:changeUrl");
+    driver.findElement(By.linkText("Test content")).click();
     driver.findElement(By.cssSelector("li:nth-child(7) > .sidebar-button")).click();
     driver.findElement(By.id("jsslug")).sendKeys("new-post-url");
     driver.findElement(By.cssSelector(".uk-button:nth-child(1)")).click();
+    System.out.println("{ASSESSOR}:HomePO:goToContent");
     driver.findElement(By.linkText("Content")).click();
+    System.out.println("{ASSESSOR}:ContentPO:getContentUrl");
     {
       List<WebElement> elements = driver.findElements(By.linkText("/new-post-url"));
       assert(elements.size() > 0);
     }
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+    System.out.println("{ASSESSOR}:HomePO:logout");
+    {
+      WebDriverWait wait = new WebDriverWait(driver, 30);
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Log out")));
     }
     driver.findElement(By.linkText("Log out")).click();
   }
   @Test
-  public void changePosition() {
-    System.out.println("{ASSESSOR}:loginPO:doLogin");
-    driver.get("http://localhost:8080/admin");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void cdoChangePosition() {
+    driver.get("http://localhost:8080/administrator/");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:doLogin");
     driver.findElement(By.name("username")).sendKeys("admin");
     driver.findElement(By.name("password")).sendKeys("password");
     driver.findElement(By.cssSelector(".uk-button")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doChangePosition");
+    System.out.println("{ASSESSOR}:HomePO:goToContent");
     driver.findElement(By.linkText("Content")).click();
-    driver.findElement(By.linkText("Test Content")).click();
+    System.out.println("{ASSESSOR}:ContentPO:changeContentPosition");
+    driver.findElement(By.linkText("Test content")).click();
     driver.findElement(By.cssSelector("li:nth-child(7) > .sidebar-button")).click();
     driver.findElement(By.id("jsposition")).sendKeys("30");
     driver.findElement(By.cssSelector(".uk-button:nth-child(1)")).click();
+    System.out.println("{ASSESSOR}:HomePO:goToContent");
     driver.findElement(By.linkText("Content")).click();
-    driver.findElement(By.linkText("Test Content")).click();
+    System.out.println("{ASSESSOR}:ContentPO:getContentPosition");
+    driver.findElement(By.linkText("Test content")).click();
     driver.findElement(By.cssSelector("li:nth-child(7) > .sidebar-button")).click();
     {
       String value = driver.findElement(By.id("jsposition")).getAttribute("value");
       assertThat(value, is("30"));
     }
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
+    System.out.println("{ASSESSOR}:HomePO:logout");
+    {
+      WebDriverWait wait = new WebDriverWait(driver, 30);
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Log out")));
+    }
     driver.findElement(By.linkText("Log out")).click();
   }
   @Test
-  public void changeParent() {
-    System.out.println("{ASSESSOR}:loginPO:doLogin");
-    driver.get("http://localhost:8080/admin");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void ddoChangeParent() {
+    driver.get("http://localhost:8080/administrator/");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:doLogin");
     driver.findElement(By.name("username")).sendKeys("admin");
     driver.findElement(By.name("password")).sendKeys("password");
     driver.findElement(By.cssSelector(".uk-button")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doChangeParent");
+    System.out.println("{ASSESSOR}:HomePO:goToContent");
     driver.findElement(By.linkText("Content")).click();
-    driver.findElement(By.linkText("Test Content")).click();
+    System.out.println("{ASSESSOR}:ContentPO:changeContentParent");
+    driver.findElement(By.linkText("Test content")).click();
     driver.findElement(By.cssSelector("li:nth-child(7) > .sidebar-button")).click();
     {
       WebElement dropdown = driver.findElement(By.id("jsparent"));
       dropdown.findElement(By.xpath("//option[. = 'Create your own content']")).click();
     }
     driver.findElement(By.cssSelector(".uk-button:nth-child(1)")).click();
+    System.out.println("{ASSESSOR}:HomePO:goToContent");
     driver.findElement(By.linkText("Content")).click();
-    driver.findElement(By.linkText("Test Content")).click();
+    System.out.println("{ASSESSOR}:ContentPO:getContentParent");
+    driver.findElement(By.linkText("Test content")).click();
     driver.findElement(By.cssSelector("li:nth-child(7) > .sidebar-button")).click();
     {
       String value = driver.findElement(By.id("jsparent")).getAttribute("value");
       assertThat(value, is("create-your-own-content"));
     }
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
+    System.out.println("{ASSESSOR}:HomePO:logout");
+    driver.findElement(By.cssSelector(".bl-navbar-right")).click();
+    {
+      WebDriverWait wait = new WebDriverWait(driver, 30);
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Log out")));
+    }
     driver.findElement(By.linkText("Log out")).click();
   }
   @Test
-  public void addAsDraft() {
-    System.out.println("{ASSESSOR}:loginPO:doLogin");
-    driver.get("http://localhost:8080/admin");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void edoAddContentAsDraft() {
+    driver.get("http://localhost:8080/administrator/");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:doLogin");
     driver.findElement(By.name("username")).sendKeys("admin");
     driver.findElement(By.name("password")).sendKeys("password");
     driver.findElement(By.cssSelector(".uk-button")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doAddAsDraft");
+    System.out.println("{ASSESSOR}:HomePO:goToNewContent");
     driver.findElement(By.linkText("New content")).click();
+    System.out.println("{ASSESSOR}:NewContentPO:createContentAsDraft");
     driver.findElement(By.id("jstitle")).sendKeys("Draft Content");
     driver.findElement(By.id("jsSaveDraft")).click();
+    System.out.println("{ASSESSOR}:ContentPO:getDraftContentTitle");
     {
       List<WebElement> elements = driver.findElements(By.linkText("Draft Content"));
       assert(elements.size() > 0);
     }
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+    System.out.println("{ASSESSOR}:HomePO:logout");
+    {
+      WebDriverWait wait = new WebDriverWait(driver, 30);
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Log out")));
     }
     driver.findElement(By.linkText("Log out")).click();
   }
   @Test
-  public void setStickyPost() {
-    System.out.println("{ASSESSOR}:loginPO:doLogin");
-    driver.get("http://localhost:8080/admin");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void fdoSetContentAsSticky() {
+    driver.get("http://localhost:8080/administrator/");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:doLogin");
     driver.findElement(By.name("username")).sendKeys("admin");
     driver.findElement(By.name("password")).sendKeys("password");
     driver.findElement(By.cssSelector(".uk-button")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doSetStickyPost");
+    System.out.println("{ASSESSOR}:HomePO:goToContent");
     driver.findElement(By.linkText("Content")).click();
+    System.out.println("{ASSESSOR}:ContentPO:setContentAsStickyPost");
     driver.findElement(By.linkText("Set up your new site")).click();
     driver.findElement(By.cssSelector("li:nth-child(7) > .sidebar-button")).click();
     {
       WebElement dropdown = driver.findElement(By.id("jsstatus"));
       dropdown.findElement(By.xpath("//option[. = 'Sticky']")).click();
     }
-    driver.findElement(By.cssSelector("#jsstatus > option:nth-child(3)")).click();
     driver.findElement(By.cssSelector(".uk-button:nth-child(1)")).click();
+    System.out.println("{ASSESSOR}:HomePO:goToContent");
     driver.findElement(By.linkText("Content")).click();
+    System.out.println("{ASSESSOR}:ContentPO:getStickyContentTitle");
     {
       List<WebElement> elements = driver.findElements(By.linkText("Set up your new site"));
       assert(elements.size() > 0);
     }
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+    System.out.println("{ASSESSOR}:HomePO:logout");
+    {
+      WebDriverWait wait = new WebDriverWait(driver, 30);
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Log out")));
     }
     driver.findElement(By.linkText("Log out")).click();
   }
   @Test
-  public void deleteContent() {
-    System.out.println("{ASSESSOR}:loginPO:doLogin");
-    driver.get("http://localhost:8080/admin");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void gdoDeleteContent() {
+    driver.get("http://localhost:8080/administrator/");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:doLogin");
     driver.findElement(By.name("username")).sendKeys("admin");
     driver.findElement(By.name("password")).sendKeys("password");
     driver.findElement(By.cssSelector(".uk-button")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doDeleteContent");
+    System.out.println("{ASSESSOR}:HomePO:goToContent");
     driver.findElement(By.linkText("Content")).click();
+    System.out.println("{ASSESSOR}:ContentPO:deleteContent");
     driver.findElement(By.linkText("Follow Bludit")).click();
     driver.findElement(By.id("jsdelete")).click();
     driver.switchTo().alert().accept();
@@ -210,24 +231,24 @@ public class BluditTestSuiteTest {
       List<WebElement> elements = driver.findElements(By.linkText("Follow Bludit"));
       assert(elements.size() == 0);
     }
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+    System.out.println("{ASSESSOR}:HomePO:logout");
+    {
+      WebDriverWait wait = new WebDriverWait(driver, 30);
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Log out")));
     }
     driver.findElement(By.linkText("Log out")).click();
   }
   @Test
-  public void addUser() {
-    System.out.println("{ASSESSOR}:loginPO:doLogin");
-    driver.get("http://localhost:8080/admin");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void hdoAddUser() {
+    driver.get("http://localhost:8080/administrator/");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:doLogin");
     driver.findElement(By.name("username")).sendKeys("admin");
     driver.findElement(By.name("password")).sendKeys("password");
     driver.findElement(By.cssSelector(".uk-button")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doAddUser");
+    System.out.println("{ASSESSOR}:HomePO:goToUsers");
     driver.findElement(By.linkText("Users")).click();
+    System.out.println("{ASSESSOR}:UsersPO:createNewUser");
     driver.findElement(By.linkText("Add a new user")).click();
     driver.findElement(By.id("jsnew_username")).sendKeys("usertest");
     driver.findElement(By.id("jsnew_password")).sendKeys("usertest123");
@@ -236,54 +257,65 @@ public class BluditTestSuiteTest {
       WebElement dropdown = driver.findElement(By.id("jsrole"));
       dropdown.findElement(By.xpath("//option[. = 'Administrator']")).click();
     }
-    driver.findElement(By.id("jsemail")).sendKeys("user@test.com");
     driver.findElement(By.cssSelector(".uk-button-primary")).click();
-    assertThat(driver.findElement(By.linkText("usertest")).getText(), is("usertest"));
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
+    System.out.println("{ASSESSOR}:UsersPO:getUserUsername");
+    {
+      List<WebElement> elements = driver.findElements(By.linkText("usertest"));
+      assert(elements.size() > 0);
+    }
+    System.out.println("{ASSESSOR}:HomePO:logout");
+    {
+      WebDriverWait wait = new WebDriverWait(driver, 30);
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Log out")));
+    }
     driver.findElement(By.linkText("Log out")).click();
   }
   @Test
-  public void changePassword() {
-    System.out.println("{ASSESSOR}:loginPO:doLogin");
-    driver.get("http://localhost:8080/admin");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void idoChangePassword() {
+    driver.get("http://localhost:8080/administrator/");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:doLogin");
     driver.findElement(By.name("username")).sendKeys("admin");
     driver.findElement(By.name("password")).sendKeys("password");
     driver.findElement(By.cssSelector(".uk-button")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doChangePassword");
+    System.out.println("{ASSESSOR}:HomePO:goToUsers");
     driver.findElement(By.linkText("Users")).click();
+    System.out.println("{ASSESSOR}:UsersPO:changeUserPassword");
     driver.findElement(By.linkText("usertest")).click();
     driver.findElement(By.linkText("Change password")).click();
     driver.findElement(By.id("jsnew_password")).sendKeys("newpassword");
     driver.findElement(By.id("jsconfirm_password")).sendKeys("newpassword");
     driver.findElement(By.cssSelector(".uk-button-primary")).click();
+    System.out.println("{ASSESSOR}:HomePO:getAlert");
     {
       List<WebElement> elements = driver.findElements(By.id("alert"));
       assert(elements.size() > 0);
     }
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+    System.out.println("{ASSESSOR}:HomePO:logout");
+    {
+      WebDriverWait wait = new WebDriverWait(driver, 30);
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Log out")));
     }
     driver.findElement(By.linkText("Log out")).click();
   }
   @Test
-  public void addSocials() {
-    System.out.println("{ASSESSOR}:loginPO:doLogin");
-    driver.get("http://localhost:8080/admin");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void jdoAddSocials() {
+    driver.get("http://localhost:8080/administrator/");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:doLogin");
     driver.findElement(By.name("username")).sendKeys("admin");
     driver.findElement(By.name("password")).sendKeys("password");
     driver.findElement(By.cssSelector(".uk-button")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doAddSocials");
+    System.out.println("{ASSESSOR}:HomePO:goToUsers");
     driver.findElement(By.linkText("Users")).click();
+    System.out.println("{ASSESSOR}:UsersPO:addSocialMediaToUser");
     driver.findElement(By.linkText("admin")).click();
     driver.findElement(By.id("jsfacebook")).sendKeys("https://www.facebook.com/some_fake_user_name_52432562135863");
     driver.findElement(By.id("jsinstagram")).sendKeys("https://instagram.com/some_fake_user_name_52432562135863");
     driver.findElement(By.cssSelector(".uk-button-primary")).click();
+    System.out.println("{ASSESSOR}:HomePO:goToUsers");
     driver.findElement(By.linkText("Users")).click();
+    System.out.println("{ASSESSOR}:UsersPO:getUserSocialMedia");
     driver.findElement(By.linkText("admin")).click();
     {
       String value = driver.findElement(By.id("jsfacebook")).getAttribute("value");
@@ -293,7 +325,11 @@ public class BluditTestSuiteTest {
       String value = driver.findElement(By.id("jsinstagram")).getAttribute("value");
       assertThat(value, is("https://instagram.com/some_fake_user_name_52432562135863"));
     }
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
+    System.out.println("{ASSESSOR}:HomePO:logout");
+    {
+      WebDriverWait wait = new WebDriverWait(driver, 30);
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Log out")));
+    }
     driver.findElement(By.linkText("Log out")).click();
   }
 }

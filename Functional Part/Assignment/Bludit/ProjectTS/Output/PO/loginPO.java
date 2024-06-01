@@ -25,7 +25,7 @@ import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class loginPO {
+public class LoginPO {
 
     WebDriver driver;
 
@@ -33,7 +33,7 @@ public class loginPO {
 
     Map<String, Object> vars;
 
-    public loginPO(WebDriver driver, JavascriptExecutor js, Map<String, Object> vars) {
+    public LoginPO(WebDriver driver, JavascriptExecutor js, Map<String, Object> vars) {
         this.driver = driver;
         this.js = js;
         this.vars = vars;
@@ -60,8 +60,6 @@ public class loginPO {
     }
 
     public void doLogin(String key1, String key2) {
-        driver.get("http://localhost:8080/admin");
-        driver.manage().window().setSize(new Dimension(1174, 825));
         set_NAME_username(key1);
         set_NAME_password(key2);
         click_CSSSELECTOR_uk_button();
