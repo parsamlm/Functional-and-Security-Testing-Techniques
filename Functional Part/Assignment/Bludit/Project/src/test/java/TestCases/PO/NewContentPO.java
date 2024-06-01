@@ -25,7 +25,7 @@ import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class LoginPO {
+public class NewContentPO {
 
     WebDriver driver;
 
@@ -33,35 +33,38 @@ public class LoginPO {
 
     Map<String, Object> vars;
 
-    public LoginPO(WebDriver driver, JavascriptExecutor js, Map<String, Object> vars) {
+    public NewContentPO(WebDriver driver, JavascriptExecutor js, Map<String, Object> vars) {
         this.driver = driver;
         this.js = js;
         this.vars = vars;
     }
 
-    public void set_NAME_username(String key1) {
-        By elem = By.name("username");
+    public void set_ID_jstitle(String key1) {
+        By elem = By.id("jstitle");
         MyUtils.WaitForElementLoaded(driver, elem);
         driver.findElement(elem).clear();
         driver.findElement(elem).sendKeys(key1);
     }
 
-    public void set_NAME_password(String key2) {
-        By elem = By.name("password");
-        MyUtils.WaitForElementLoaded(driver, elem);
-        driver.findElement(elem).clear();
-        driver.findElement(elem).sendKeys(key2);
-    }
-
-    public void click_CSSSELECTOR_uk_button() {
-        By elem = By.cssSelector(".uk-button");
+    public void click_CSSSELECTOR_uk_buttonnth_child1() {
+        By elem = By.cssSelector(".uk-button:nth-child(1)");
         MyUtils.WaitForElementLoaded(driver, elem);
         driver.findElement(elem).click();
     }
 
-    public void doLogin(String key1, String key2) {
-        set_NAME_username(key1);
-        set_NAME_password(key2);
-        click_CSSSELECTOR_uk_button();
+    public void createNewContent(String key1) {
+        set_ID_jstitle(key1);
+        click_CSSSELECTOR_uk_buttonnth_child1();
+    }
+
+    public void click_ID_jsSaveDraft() {
+        By elem = By.id("jsSaveDraft");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        driver.findElement(elem).click();
+    }
+
+    public void createContentAsDraft(String key1) {
+        set_ID_jstitle(key1);
+        click_ID_jsSaveDraft();
     }
 }
