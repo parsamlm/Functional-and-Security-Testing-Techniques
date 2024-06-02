@@ -53,83 +53,144 @@ public class TestCases {
     }
 
     @Test
-    public void addNewProduct() {
+    public void adoAddNewProduct() {
+        driver.get("http://localhost:8080/administrator");
+        driver.manage().window().setSize(new Dimension(1200, 700));
         LoginPO _LoginPO = new LoginPO(driver, js, vars);
-        _LoginPO.doLogin("admin@prestashop.com", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doAddNewProduct("Blue Jacket3");
-        assert (_DashboardPO.set_CSSSELECTOR_alert_successnth_child1().size() > 0);
-        _DashboardPO.doLogout();
+        _LoginPO.login("admin@prestashop.com", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToProducts();
+        ProductsPO _ProductsPO = new ProductsPO(driver, js, vars);
+        _ProductsPO.addNewProduct("Blue Jacket3");
+        assert (_ProductsPO.set_CSSSELECTOR_alert_successnth_child1().size() > 0);
+        _HomePO.logout();
     }
 
     @Test
-    public void addEmptyProduct() {
+    public void bdoAddEmptyProduct() {
+        driver.get("http://localhost:8080/administrator");
+        driver.manage().window().setSize(new Dimension(1200, 700));
         LoginPO _LoginPO = new LoginPO(driver, js, vars);
-        _LoginPO.doLogin("admin@prestashop.com", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doAddEmptyProduct();
-        assertThat(_DashboardPO.set_CSSSELECTOR_ollinth_child1_1(), is("This link_rewrite field is required at least in English (English)"));
-        assertThat(_DashboardPO.set_CSSSELECTOR_ollinth_child2(), is("This name field is required at least in English (English)"));
-        _DashboardPO.doLogout();
+        _LoginPO.login("admin@prestashop.com", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToProducts();
+        ProductsPO _ProductsPO = new ProductsPO(driver, js, vars);
+        _ProductsPO.addNewEmptyProduct();
+        assertThat(_ProductsPO.set_CSSSELECTOR_ollinth_child1_1(), is("This link_rewrite field is required at least in English (English)"));
+        assertThat(_ProductsPO.set_CSSSELECTOR_ollinth_child2(), is("This name field is required at least in English (English)"));
+        _HomePO.logout();
     }
 
     @Test
-    public void editProduct() {
+    public void cdoEditProduct() {
+        driver.get("http://localhost:8080/administrator");
+        driver.manage().window().setSize(new Dimension(1200, 700));
         LoginPO _LoginPO = new LoginPO(driver, js, vars);
-        _LoginPO.doLogin("admin@prestashop.com", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doEditProduct("Deep Blue Jacket");
-        assert (_DashboardPO.set_CSSSELECTOR_alert_successnth_child1().size() > 0);
-        _DashboardPO.doLogout();
+        _LoginPO.login("admin@prestashop.com", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToProducts();
+        ProductsPO _ProductsPO = new ProductsPO(driver, js, vars);
+        _ProductsPO.editProduct("Deep Blue Jacket");
+        assert (_ProductsPO.set_CSSSELECTOR_alert_successnth_child1().size() > 0);
+        _HomePO.logout();
     }
 
     @Test
-    public void addNewState() {
+    public void ddoAddNewState() {
+        driver.get("http://localhost:8080/administrator");
+        driver.manage().window().setSize(new Dimension(1200, 700));
         LoginPO _LoginPO = new LoginPO(driver, js, vars);
-        _LoginPO.doLogin("admin@prestashop.com", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doAddNewState("Liguria", "1121", "Italy", "Europe");
-        assert (_DashboardPO.set_CSSSELECTOR_alert_successnth_child1().size() > 0);
-        _DashboardPO.doLogout();
+        _LoginPO.login("admin@prestashop.com", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToStates();
+        StatesPO _StatesPO = new StatesPO(driver, js, vars);
+        _StatesPO.addNewState("Liguria", "1121", "Italy", "Europe");
+        assert (_StatesPO.set_CSSSELECTOR_alert_successnth_child1().size() > 0);
+        _HomePO.logout();
     }
 
     @Test
-    public void addEmptyState() {
+    public void edoAddEmptyState() {
+        driver.get("http://localhost:8080/administrator");
+        driver.manage().window().setSize(new Dimension(1200, 700));
         LoginPO _LoginPO = new LoginPO(driver, js, vars);
-        _LoginPO.doLogin("admin@prestashop.com", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doAddEmptyState();
-        assertThat(_DashboardPO.set_CSSSELECTOR_ollinth_child1_1(), is("The iso_code field is required."));
-        _DashboardPO.click_CSSSELECTOR_ollinth_child2();
+        _LoginPO.login("admin@prestashop.com", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToStates();
+        StatesPO _StatesPO = new StatesPO(driver, js, vars);
+        _StatesPO.addEmptyState();
+        assertThat(_StatesPO.set_CSSSELECTOR_ollinth_child1_1(), is("The iso_code field is required."));
+        assertThat(_StatesPO.set_CSSSELECTOR_ollinth_child2(), is("The name field is required."));
+        _HomePO.logout();
     }
 
     @Test
-    public void addNewFeature() {
+    public void fdoAddNewProductWithTax() {
+        driver.get("http://localhost:8080/administrator");
+        driver.manage().window().setSize(new Dimension(1200, 700));
         LoginPO _LoginPO = new LoginPO(driver, js, vars);
-        _LoginPO.doLogin("admin@prestashop.com", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doAddNewFeature("Strong");
-        assert (_DashboardPO.set_CSSSELECTOR_alert_successnth_child1().size() > 0);
-        _DashboardPO.doLogout();
+        _LoginPO.login("admin@prestashop.com", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToProducts();
+        ProductsPO _ProductsPO = new ProductsPO(driver, js, vars);
+        _ProductsPO.addNewProductWithTax("10");
+        assertThat(_ProductsPO.set_ID_priceTI(), is("12.20"));
+        _HomePO.logout();
     }
 
     @Test
-    public void addEmptyFeature() {
+    public void gdoAddNewProductWithTax10() {
+        driver.get("http://localhost:8080/administrator");
+        driver.manage().window().setSize(new Dimension(1200, 700));
         LoginPO _LoginPO = new LoginPO(driver, js, vars);
-        _LoginPO.doLogin("admin@prestashop.com", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doAddEmptyFeature();
-        assert (_DashboardPO.set_CSSSELECTOR_alert_danger().size() > 0);
-        _DashboardPO.doLogout();
+        _LoginPO.login("admin@prestashop.com", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToProducts();
+        ProductsPO _ProductsPO = new ProductsPO(driver, js, vars);
+        _ProductsPO.addNewProductWithTax10("10", "IT Reduced Rate (10%)");
+        assertThat(_ProductsPO.set_ID_priceTI(), is("11.00"));
+        _HomePO.logout();
     }
 
     @Test
-    public void addNewAttribute() {
+    public void hdoAddNewFeature() {
+        driver.get("http://localhost:8080/administrator");
+        driver.manage().window().setSize(new Dimension(1200, 700));
         LoginPO _LoginPO = new LoginPO(driver, js, vars);
-        _LoginPO.doLogin("admin@prestashop.com", "password");
-        DashboardPO _DashboardPO = new DashboardPO(driver, js, vars);
-        _DashboardPO.doAddNewAttribute("Quantity", "Qnt");
-        assert (_DashboardPO.set_CSSSELECTOR_alert_successnth_child1().size() > 0);
-        _DashboardPO.doLogout();
+        _LoginPO.login("admin@prestashop.com", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToProductFeatures();
+        ProductFeaturesPO _ProductFeaturesPO = new ProductFeaturesPO(driver, js, vars);
+        _ProductFeaturesPO.AddNewFeature("Strong");
+        assert (_ProductFeaturesPO.set_CSSSELECTOR_alert_successnth_child1().size() > 0);
+        _HomePO.logout();
+    }
+
+    @Test
+    public void idoAddEmptyFeature() {
+        driver.get("http://localhost:8080/administrator");
+        driver.manage().window().setSize(new Dimension(1200, 700));
+        LoginPO _LoginPO = new LoginPO(driver, js, vars);
+        _LoginPO.login("admin@prestashop.com", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToProductFeatures();
+        ProductFeaturesPO _ProductFeaturesPO = new ProductFeaturesPO(driver, js, vars);
+        _ProductFeaturesPO.AddEmptyFeature();
+        assert (_ProductFeaturesPO.set_CSSSELECTOR_alert_danger().size() > 0);
+        _HomePO.logout();
+    }
+
+    @Test
+    public void jdoAddNewProductAttribute() {
+        driver.get("http://localhost:8080/administrator");
+        driver.manage().window().setSize(new Dimension(1200, 700));
+        LoginPO _LoginPO = new LoginPO(driver, js, vars);
+        _LoginPO.login("admin@prestashop.com", "password");
+        HomePO _HomePO = new HomePO(driver, js, vars);
+        _HomePO.goToProductAttributes();
+        ProductAttributesPO _ProductAttributesPO = new ProductAttributesPO(driver, js, vars);
+        _ProductAttributesPO.addNewAttribute("Quantity", "Qnt");
+        assert (_ProductAttributesPO.set_CSSSELECTOR_alert_successnth_child1().size() > 0);
+        _HomePO.logout();
     }
 }

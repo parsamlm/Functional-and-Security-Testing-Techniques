@@ -37,20 +37,21 @@ public class PrestashopTestSuiteTest {
     driver.quit();
   }
   @Test
-  public void addNewProduct() {
-    System.out.println("{ASSESSOR}:LoginPO:doLogin");
-    driver.get("http://localhost:8080/administrator/");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void adoAddNewProduct() {
+    driver.get("http://localhost:8080/administrator");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:login");
     driver.findElement(By.id("email")).sendKeys("admin@prestashop.com");
     driver.findElement(By.id("passwd")).sendKeys("password");
     driver.findElement(By.name("submitLogin")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doAddNewProduct");
+    System.out.println("{ASSESSOR}:HomePO:goToProducts");
     {
       WebElement element = driver.findElement(By.linkText("Catalog"));
       Actions builder = new Actions(driver);
       builder.moveToElement(element).perform();
     }
     driver.findElement(By.linkText("Products")).click();
+    System.out.println("{ASSESSOR}:ProductsPO:addNewProduct");
     driver.findElement(By.id("page-header-desc-product-new_product")).click();
     driver.findElement(By.id("name_1")).sendKeys("Blue Jacket3");
     driver.findElement(By.name("submitAddproduct")).click();
@@ -58,74 +59,77 @@ public class PrestashopTestSuiteTest {
       List<WebElement> elements = driver.findElements(By.cssSelector(".alert-success:nth-child(1)"));
       assert(elements.size() > 0);
     }
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
+    System.out.println("{ASSESSOR}:HomePO:logout");
     driver.findElement(By.cssSelector(".employee_name")).click();
     driver.findElement(By.id("header_logout")).click();
   }
   @Test
-  public void addEmptyProduct() {
-    System.out.println("{ASSESSOR}:LoginPO:doLogin");
-    driver.get("http://localhost:8080/administrator/");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void bdoAddEmptyProduct() {
+    driver.get("http://localhost:8080/administrator");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:login");
     driver.findElement(By.id("email")).sendKeys("admin@prestashop.com");
     driver.findElement(By.id("passwd")).sendKeys("password");
     driver.findElement(By.name("submitLogin")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doAddEmptyProduct");
+    System.out.println("{ASSESSOR}:HomePO:goToProducts");
     {
       WebElement element = driver.findElement(By.linkText("Catalog"));
       Actions builder = new Actions(driver);
       builder.moveToElement(element).perform();
     }
     driver.findElement(By.linkText("Products")).click();
+    System.out.println("{ASSESSOR}:ProductsPO:addNewEmptyProduct");
     driver.findElement(By.id("page-header-desc-product-new_product")).click();
     driver.findElement(By.name("submitAddproduct")).click();
     assertThat(driver.findElement(By.cssSelector("ol > li:nth-child(1)")).getText(), is("This link_rewrite field is required at least in English (English)"));
     assertThat(driver.findElement(By.cssSelector("ol > li:nth-child(2)")).getText(), is("This name field is required at least in English (English)"));
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
+    System.out.println("{ASSESSOR}:HomePO:logout");
     driver.findElement(By.cssSelector(".employee_name")).click();
     driver.findElement(By.id("header_logout")).click();
   }
   @Test
-  public void editProduct() {
-    System.out.println("{ASSESSOR}:LoginPO:doLogin");
-    driver.get("http://localhost:8080/administrator/");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void cdoEditProduct() {
+    driver.get("http://localhost:8080/administrator");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:login");
     driver.findElement(By.id("email")).sendKeys("admin@prestashop.com");
     driver.findElement(By.id("passwd")).sendKeys("password");
     driver.findElement(By.name("submitLogin")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doEditProduct");
+    System.out.println("{ASSESSOR}:HomePO:goToProducts");
     {
       WebElement element = driver.findElement(By.linkText("Catalog"));
       Actions builder = new Actions(driver);
       builder.moveToElement(element).perform();
     }
     driver.findElement(By.linkText("Products")).click();
-    driver.findElement(By.cssSelector("#tr__8_0 .edit")).click();
+    System.out.println("{ASSESSOR}:ProductsPO:editProduct");
+    driver.findElement(By.cssSelector("#tr__13_0 .edit")).click();
     driver.findElement(By.id("name_1")).sendKeys("Deep Blue Jacket");
     driver.findElement(By.name("submitAddproduct")).click();
     {
       List<WebElement> elements = driver.findElements(By.cssSelector(".alert-success:nth-child(1)"));
       assert(elements.size() > 0);
     }
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
+    System.out.println("{ASSESSOR}:HomePO:logout");
     driver.findElement(By.cssSelector(".employee_name")).click();
     driver.findElement(By.id("header_logout")).click();
   }
   @Test
-  public void addNewState() {
-    System.out.println("{ASSESSOR}:LoginPO:doLogin");
-    driver.get("http://localhost:8080/administrator/");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void ddoAddNewState() {
+    driver.get("http://localhost:8080/administrator");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:login");
     driver.findElement(By.id("email")).sendKeys("admin@prestashop.com");
     driver.findElement(By.id("passwd")).sendKeys("password");
     driver.findElement(By.name("submitLogin")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doAddNewState");
+    System.out.println("{ASSESSOR}:HomePO:goToStates");
     {
       WebElement element = driver.findElement(By.linkText("Localization"));
       Actions builder = new Actions(driver);
       builder.moveToElement(element).perform();
     }
     driver.findElement(By.linkText("States")).click();
+    System.out.println("{ASSESSOR}:StatesPO:addNewState");
     driver.findElement(By.id("page-header-desc-state-new_state")).click();
     driver.findElement(By.id("name")).sendKeys("Liguria");
     driver.findElement(By.id("iso_code")).sendKeys("1121");
@@ -142,48 +146,108 @@ public class PrestashopTestSuiteTest {
       List<WebElement> elements = driver.findElements(By.cssSelector(".alert-success:nth-child(1)"));
       assert(elements.size() > 0);
     }
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
+    System.out.println("{ASSESSOR}:HomePO:logout");
     driver.findElement(By.cssSelector(".employee_name")).click();
     driver.findElement(By.id("header_logout")).click();
   }
   @Test
-  public void addEmptyState() {
-    System.out.println("{ASSESSOR}:LoginPO:doLogin");
-    driver.get("http://localhost:8080/administrator/");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void edoAddEmptyState() {
+    driver.get("http://localhost:8080/administrator");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:login");
     driver.findElement(By.id("email")).sendKeys("admin@prestashop.com");
     driver.findElement(By.id("passwd")).sendKeys("password");
     driver.findElement(By.name("submitLogin")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doAddEmptyState");
+    System.out.println("{ASSESSOR}:HomePO:goToStates");
     {
       WebElement element = driver.findElement(By.linkText("Localization"));
       Actions builder = new Actions(driver);
       builder.moveToElement(element).perform();
     }
     driver.findElement(By.linkText("States")).click();
+    System.out.println("{ASSESSOR}:StatesPO:addEmptyState");
     driver.findElement(By.id("page-header-desc-state-new_state")).click();
     driver.findElement(By.id("state_form_submit_btn")).click();
     assertThat(driver.findElement(By.cssSelector("ol > li:nth-child(1)")).getText(), is("The iso_code field is required."));
-    driver.findElement(By.cssSelector("ol > li:nth-child(2)")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
+    assertThat(driver.findElement(By.cssSelector("ol > li:nth-child(2)")).getText(), is("The name field is required."));
+    System.out.println("{ASSESSOR}:HomePO:logout");
     driver.findElement(By.cssSelector(".employee_name")).click();
     driver.findElement(By.id("header_logout")).click();
   }
   @Test
-  public void addNewFeature() {
-    System.out.println("{ASSESSOR}:LoginPO:doLogin");
-    driver.get("http://localhost:8080/administrator/");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void fdoAddNewProductWithTax() {
+    driver.get("http://localhost:8080/administrator");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:login");
     driver.findElement(By.id("email")).sendKeys("admin@prestashop.com");
     driver.findElement(By.id("passwd")).sendKeys("password");
     driver.findElement(By.name("submitLogin")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doAddNewFeature");
+    System.out.println("{ASSESSOR}:HomePO:goToProducts");
+    {
+      WebElement element = driver.findElement(By.linkText("Catalog"));
+      Actions builder = new Actions(driver);
+      builder.moveToElement(element).perform();
+    }
+    driver.findElement(By.linkText("Products")).click();
+    System.out.println("{ASSESSOR}:ProductsPO:addNewProductWithTax");
+    driver.findElement(By.id("page-header-desc-product-new_product")).click();
+    driver.findElement(By.id("link-Prices")).click();
+    driver.findElement(By.id("priceTE")).sendKeys("10");
+    {
+      String value = driver.findElement(By.id("priceTI")).getAttribute("value");
+      assertThat(value, is("12.20"));
+    }
+    System.out.println("{ASSESSOR}:HomePO:logout");
+    driver.findElement(By.cssSelector(".employee_name")).click();
+    driver.findElement(By.id("header_logout")).click();
+  }
+  @Test
+  public void gdoAddNewProductWithTax10() {
+    driver.get("http://localhost:8080/administrator");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:login");
+    driver.findElement(By.id("email")).sendKeys("admin@prestashop.com");
+    driver.findElement(By.id("passwd")).sendKeys("password");
+    driver.findElement(By.name("submitLogin")).click();
+    System.out.println("{ASSESSOR}:HomePO:goToProducts");
+    {
+      WebElement element = driver.findElement(By.linkText("Catalog"));
+      Actions builder = new Actions(driver);
+      builder.moveToElement(element).perform();
+    }
+    driver.findElement(By.linkText("Products")).click();
+    System.out.println("{ASSESSOR}:ProductsPO:addNewProductWithTax10");
+    driver.findElement(By.id("page-header-desc-product-new_product")).click();
+    driver.findElement(By.id("link-Prices")).click();
+    driver.findElement(By.id("priceTE")).sendKeys("10");
+    {
+      WebElement dropdown = driver.findElement(By.id("id_tax_rules_group"));
+      dropdown.findElement(By.xpath("//option[. = 'IT Reduced Rate (10%)']")).click();
+    }
+    {
+      String value = driver.findElement(By.id("priceTI")).getAttribute("value");
+      assertThat(value, is("11.00"));
+    }
+    System.out.println("{ASSESSOR}:HomePO:logout");
+    driver.findElement(By.cssSelector(".employee_name")).click();
+    driver.findElement(By.id("header_logout")).click();
+  }
+  @Test
+  public void hdoAddNewFeature() {
+    driver.get("http://localhost:8080/administrator");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:login");
+    driver.findElement(By.id("email")).sendKeys("admin@prestashop.com");
+    driver.findElement(By.id("passwd")).sendKeys("password");
+    driver.findElement(By.name("submitLogin")).click();
+    System.out.println("{ASSESSOR}:HomePO:goToProductFeatures");
     {
       WebElement element = driver.findElement(By.linkText("Catalog"));
       Actions builder = new Actions(driver);
       builder.moveToElement(element).perform();
     }
     driver.findElement(By.linkText("Product Features")).click();
+    System.out.println("{ASSESSOR}:ProductFeaturesPO:AddNewFeature");
     driver.findElement(By.id("page-header-desc-feature-new_feature")).click();
     driver.findElement(By.id("name_1")).sendKeys("Strong");
     driver.findElement(By.id("feature_form_submit_btn")).click();
@@ -191,50 +255,52 @@ public class PrestashopTestSuiteTest {
       List<WebElement> elements = driver.findElements(By.cssSelector(".alert-success:nth-child(1)"));
       assert(elements.size() > 0);
     }
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
+    System.out.println("{ASSESSOR}:HomePO:logout");
     driver.findElement(By.cssSelector(".employee_name")).click();
     driver.findElement(By.id("header_logout")).click();
   }
   @Test
-  public void addEmptyFeature() {
-    System.out.println("{ASSESSOR}:LoginPO:doLogin");
-    driver.get("http://localhost:8080/administrator/");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void idoAddEmptyFeature() {
+    driver.get("http://localhost:8080/administrator");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:login");
     driver.findElement(By.id("email")).sendKeys("admin@prestashop.com");
     driver.findElement(By.id("passwd")).sendKeys("password");
     driver.findElement(By.name("submitLogin")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doAddEmptyFeature");
+    System.out.println("{ASSESSOR}:HomePO:goToProductFeatures");
     {
       WebElement element = driver.findElement(By.linkText("Catalog"));
       Actions builder = new Actions(driver);
       builder.moveToElement(element).perform();
     }
     driver.findElement(By.linkText("Product Features")).click();
+    System.out.println("{ASSESSOR}:ProductFeaturesPO:AddEmptyFeature");
     driver.findElement(By.id("page-header-desc-feature-new_feature")).click();
     driver.findElement(By.id("feature_form_submit_btn")).click();
     {
       List<WebElement> elements = driver.findElements(By.cssSelector(".alert-danger"));
       assert(elements.size() > 0);
     }
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
+    System.out.println("{ASSESSOR}:HomePO:logout");
     driver.findElement(By.cssSelector(".employee_name")).click();
     driver.findElement(By.id("header_logout")).click();
   }
   @Test
-  public void addNewAttribute() {
-    System.out.println("{ASSESSOR}:LoginPO:doLogin");
-    driver.get("http://localhost:8080/administrator/");
-    driver.manage().window().setSize(new Dimension(1174, 825));
+  public void jdoAddNewProductAttribute() {
+    driver.get("http://localhost:8080/administrator");
+    driver.manage().window().setSize(new Dimension(1200, 700));
+    System.out.println("{ASSESSOR}:LoginPO:login");
     driver.findElement(By.id("email")).sendKeys("admin@prestashop.com");
     driver.findElement(By.id("passwd")).sendKeys("password");
     driver.findElement(By.name("submitLogin")).click();
-    System.out.println("{ASSESSOR}:DashboardPO:doAddNewAttribute");
+    System.out.println("{ASSESSOR}:HomePO:goToProductAttributes");
     {
       WebElement element = driver.findElement(By.linkText("Catalog"));
       Actions builder = new Actions(driver);
       builder.moveToElement(element).perform();
     }
     driver.findElement(By.linkText("Product Attributes")).click();
+    System.out.println("{ASSESSOR}:ProductAttributesPO:addNewAttribute");
     driver.findElement(By.id("page-header-desc-attribute_group-new_attribute_group")).click();
     driver.findElement(By.id("name_1")).sendKeys("Quantity");
     driver.findElement(By.id("public_name_1")).sendKeys("Qnt");
@@ -243,7 +309,7 @@ public class PrestashopTestSuiteTest {
       List<WebElement> elements = driver.findElements(By.cssSelector(".alert-success:nth-child(1)"));
       assert(elements.size() > 0);
     }
-    System.out.println("{ASSESSOR}:DashboardPO:doLogout");
+    System.out.println("{ASSESSOR}:HomePO:logout");
     driver.findElement(By.cssSelector(".employee_name")).click();
     driver.findElement(By.id("header_logout")).click();
   }
