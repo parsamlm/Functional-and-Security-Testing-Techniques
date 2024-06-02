@@ -25,7 +25,7 @@ import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class LoginPO {
+public class ProductAttributesPO {
 
     WebDriver driver;
 
@@ -33,35 +33,49 @@ public class LoginPO {
 
     Map<String, Object> vars;
 
-    public LoginPO(WebDriver driver, JavascriptExecutor js, Map<String, Object> vars) {
+    public ProductAttributesPO(WebDriver driver, JavascriptExecutor js, Map<String, Object> vars) {
         this.driver = driver;
         this.js = js;
         this.vars = vars;
     }
 
-    public void set_ID_email(String key1) {
-        By elem = By.id("email");
+    public void click_ID_page_header_desc_attribute_group_new_attribute_group() {
+        By elem = By.id("page-header-desc-attribute_group-new_attribute_group");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        driver.findElement(elem).click();
+    }
+
+    public void set_ID_name_1(String key1) {
+        By elem = By.id("name_1");
         MyUtils.WaitForElementLoaded(driver, elem);
         driver.findElement(elem).clear();
         driver.findElement(elem).sendKeys(key1);
     }
 
-    public void set_ID_passwd(String key2) {
-        By elem = By.id("passwd");
+    public void set_ID_public_name_1(String key2) {
+        By elem = By.id("public_name_1");
         MyUtils.WaitForElementLoaded(driver, elem);
         driver.findElement(elem).clear();
         driver.findElement(elem).sendKeys(key2);
     }
 
-    public void click_NAME_submitLogin() {
-        By elem = By.name("submitLogin");
+    public void click_ID_attribute_group_form_submit_btn() {
+        By elem = By.id("attribute_group_form_submit_btn");
         MyUtils.WaitForElementLoaded(driver, elem);
         driver.findElement(elem).click();
     }
 
-    public void login(String key1, String key2) {
-        set_ID_email(key1);
-        set_ID_passwd(key2);
-        click_NAME_submitLogin();
+    public void addNewAttribute(String key1, String key2) {
+        click_ID_page_header_desc_attribute_group_new_attribute_group();
+        set_ID_name_1(key1);
+        set_ID_public_name_1(key2);
+        click_ID_attribute_group_form_submit_btn();
+    }
+
+    public List<WebElement> set_CSSSELECTOR_alert_successnth_child1() {
+        By elem = By.cssSelector(".alert-success:nth-child(1)");
+        MyUtils.WaitForElementLoaded(driver, elem);
+        List<WebElement> elements = driver.findElements(elem);
+        return elements;
     }
 }
